@@ -7,31 +7,7 @@
     <title>LuxNett Control robot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
-    <script type="text/javascript">
-        var game;
-        var ball;
-        var joystick;
-        function init(){
-            game = new Scene();
-            ball = new Sprite(game, "redBall.png", 50, 50);
-            if (game.touchable){
-                joystick = new Joy();
-            } else {
-                alert("This game requires a touch screen");
-            } // end if
-            ball.setSpeed(0);
-            ball.setPosition(400, 300);
-            game.start();
-        } // end init
-        function update(){
-            game.clear();
-            if (game.touchable){
-                ball.setDX(joystick.getDiffX());
-                ball.setDY(joystick.getDiffY());
-            } // end touchable
-            ball.update();
-        } // end update
-    </script>
+
 </head>
 <body>
 <section class="section">
@@ -45,8 +21,8 @@
                         <div class="ul">
                             <div class="li">
                                 <p>ACTION</p>
-                                <a class="button is-rounded">Start water</a>
-                                <a class="button is-rounded">Start brush</a>
+                                <a class="button is-rounded is-warning" id="water" value="Stop" onclick="statusWater()">Water</a>
+                                <a class="button is-rounded is-warning" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
                             </div>
                             <div class="li">
                                 <p>COMMANDE</p>
@@ -82,6 +58,43 @@
         </div>
     </div>
 </section>
+<script>
+
+    function statusBrush() {
+        var elem = document.getElementById("brush");
+        if (elem.value=="Stop")
+        {
+            elem.value = "Start";
+            elem.classList.remove("is-warning");
+            elem.classList.add("is-success");
+        }
+        else
+        {
+            elem.value = "Stop";
+            elem.classList.remove("is-success");
+            elem.classList.add("is-warning");
+        }
+        console.log(elem.value);
+    }
+
+    function statusWater() {
+        var elem = document.getElementById("water");
+        if (elem.value=="Stop")
+        {
+            elem.value = "Start";
+            elem.classList.remove("is-warning");
+            elem.classList.add("is-success");
+        }
+        else
+        {
+            elem.value = "Stop";
+            elem.classList.remove("is-success");
+            elem.classList.add("is-warning");
+        }
+        console.log(elem.value);
+    }
+
+</script>
 
 </body>
 </html>
