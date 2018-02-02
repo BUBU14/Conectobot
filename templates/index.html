@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+    <title>LuxNett Control robot</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+    <script type="text/javascript">
+        var game;
+        var ball;
+        var joystick;
+        function init(){
+            game = new Scene();
+            ball = new Sprite(game, "redBall.png", 50, 50);
+            if (game.touchable){
+                joystick = new Joy();
+            } else {
+                alert("This game requires a touch screen");
+            } // end if
+            ball.setSpeed(0);
+            ball.setPosition(400, 300);
+            game.start();
+        } // end init
+        function update(){
+            game.clear();
+            if (game.touchable){
+                ball.setDX(joystick.getDiffX());
+                ball.setDY(joystick.getDiffY());
+            } // end touchable
+            ball.update();
+        } // end update
+    </script>
+</head>
+<body>
+<section class="section">
+    <div class="container">
+        <div class="columns">
+            <div class="column" align="center">
+                MODE
+                <div class="columns">
+                    <div class="column">
+                        <a class="button is-info is-medium is-outlined fa-align-center">Manuel</a>
+                        <div class="ul">
+                            <div class="li">
+                                <p>ACTION</p>
+                                <a class="button is-rounded">Start water</a>
+                                <a class="button is-rounded">Start brush</a>
+                            </div>
+                            <div class="li">
+                                <p>COMMANDE</p>
+                                <a title="left" class="button is-outlined" >
+                                    <span class="icon">
+                                        <i class="fa fa-chevron-left"></i>
+                                    </span>
+                                </a>
+                                <a title="up" class="button is-outlined" >
+                                    <span class="icon">
+                                        <i class="fa fa-chevron-up"></i>
+                                    </span>
+                                </a>
+                                <a title="down" class="button is-outlined" >
+                                    <span class="icon">
+                                        <i class="fa fa-chevron-down"></i>
+                                    </span>
+                                </a>
+                                <a title="right" class="button is-outlined" >
+                                    <span class="icon">
+                                        <i class="fa fa-chevron-right"></i>
+                                    </span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="column">
+                        <a class="button is-info is-medium is-outlined fa-align-center">Auto</a>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+</body>
+</html>
