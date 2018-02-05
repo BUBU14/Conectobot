@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 
+<!--suppress ALL -->
 <html xmlns="http://www.w3.org/1999/html">
 <head>
     <meta charset="utf-8">
@@ -7,6 +8,7 @@
     <title>LuxNett Control robot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+    <script src="http://code.jquery.com/jquery-3.3.1.min.js"     crossorigin="anonymous"></script>
 
 </head>
 <body>
@@ -63,10 +65,7 @@
                         </br>
                         </br>
                         <a class="button is-success is-rounded is-right">Start Automatic</a>
-
                     </div>
-
-
                 </div>
             </div>
         </div>
@@ -76,37 +75,100 @@
 
     function statusBrush() {
         var elem = document.getElementById("brush");
-        if (elem.value=="Stop")
+        var state ;
+        var jsonToSend = new Object();
+
+        if (elem.value =="Stop")
         {
-            elem.value = "Start";
-            elem.classList.remove("is-warning");
-            elem.classList.add("is-success");
+            state = 1 ;
         }
         else
         {
-            elem.value = "Stop";
-            elem.classList.remove("is-success");
-            elem.classList.add("is-warning");
+            state = 0 ;
         }
-        console.log(elem.value);
+        jsonToSend.state = state;
+        var jsonString = JSON.stringify(jsonToSend, null, '\t');
+        $.ajax({
+            url: '/brush/',
+            type: 'POST',
+            dataType: 'application/json;charset=UTF-8',
+            data: jsonString,
+            statusCode: {
+                200: function () {
+                    if (elem.value == "Stop") {
+                        elem.value = "Start";
+                        elem.classList.remove("is-warning");
+                        elem.classList.add("is-success");
+                        console.log("I'm starting brush");
+                    }
+                    else {
+                        elem.value = "Stop";
+                        elem.classList.remove("is-success");
+                        elem.classList.add("is-warning");
+                        console.log("I'm ending brush");
+                    }
+                    console.log("Success !");
+                },
+                400: function () {
+                    console.log("Couldn't change state of Brush")
+                    if (state == 0) {
+                        state = 1;
+                    }
+                    else {
+                        state = 0;
+                    }
+                }
+            }
+        });
     }
 
     function statusWater() {
         var elem = document.getElementById("water");
-        if (elem.value=="Stop")
-        {
-            elem.value = "Start";
-            elem.classList.remove("is-warning");
-            elem.classList.add("is-success");
+        var state ;
+        var jsonToSend = new Object();
 
+        if (elem.value =="Stop")
+        {
+            state = 1 ;
         }
         else
         {
-            elem.value = "Stop";
-            elem.classList.remove("is-success");
-            elem.classList.add("is-warning");
+            state = 0 ;
         }
-        console.log(elem.value);
+        jsonToSend.state = state;
+        var jsonString = JSON.stringify(jsonToSend, null, '\t');
+        $.ajax({
+            url: '/water/',
+            type: 'POST',
+            dataType: 'application/json;charset=UTF-8',
+            data: jsonString,
+            statusCode: {
+                200: function () {
+                    if (elem.value == "Stop") {
+                        elem.value = "Start";
+                        elem.classList.remove("is-warning");
+                        elem.classList.add("is-success");
+                        console.log("I'm starting water");
+                    }
+                    else {
+                        elem.value = "Stop";
+                        elem.classList.remove("is-success");
+                        elem.classList.add("is-warning");
+                        console.log("I'm ending water");
+                    }
+                    console.log("Success !");
+                },
+                400: function () {
+                    console.log("Couldn't change state of Water")
+                    if (state == 0) {
+                        state = 1;
+                    }
+                    else {
+                        state = 0;
+                    }
+                }
+            }
+        });
     }
 
     function moveUp()
@@ -130,7 +192,7 @@
     }
     function generalMove()
     {
-        console.log("data from CONTROL PANEL")
+        console.log("data from CONTROL PANEL : X and Y ")
     }
 
 </script>
