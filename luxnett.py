@@ -44,5 +44,33 @@ def up():
     else:
         return make_response('400')
 
+@app.route('/down/', methods=['POST'])
+def down():
+    post = request.get_json(force=True)
+    print(post['down'])
+    if post['down'] == 1:
+        return make_response('200')
+    else:
+        return make_response('400')
+
+@app.route('/left/', methods=['POST'])
+def left():
+    post = request.get_json(force=True)
+    print(post['left'])
+    if post['left'] == 1:
+        return make_response('200')
+    else:
+        return make_response('400')
+
+@app.route('/right/', methods=['POST'])
+def right():
+    post = request.get_json(force=True)
+    print(post['right'])
+    if post['right'] == 1:
+        return make_response('200')
+    else:
+        return make_response('400')
+
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
