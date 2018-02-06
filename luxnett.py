@@ -35,6 +35,14 @@ def water():
         return make_response('400')
     return make_response('200')
 
+@app.route('/up/', methods=['POST'])
+def up():
+    post = request.get_json(force=True)
+    print(post['up'])
+    if post['up'] == 1:
+        return make_response('200')
+    else:
+        return make_response('400')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
