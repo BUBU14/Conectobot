@@ -8,7 +8,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+
+
 </head>
+
 <body>
 <script type="text/javascript" src="{{ url_for('static', filename='control.js') }}"></script>
 <div class="container">
@@ -48,7 +51,7 @@
                             </a>
                         </div>
                         <div class="li">
-                            CONTROL PANEL
+                            <a title="move" class="button is-outlined is-danger" id="move" onclick="SetGeneralMove()" >CONTROL PANEL</a>
 
                         </div>
                     </div>

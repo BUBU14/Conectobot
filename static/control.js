@@ -247,7 +247,15 @@ function sendRight() {
     });
 }
 
-function generalMove()
-{
-    console.log("data from CONTROL PANEL : X and Y ")
+function SetGeneralMove() {
+    var elem = document.getElementById("move")
+    if(elem.classList.contains("is-danger")) {
+        elem.classList.add("is-success");
+        elem.classList.remove("is-danger");
+    }
+    else if (elem.classList.contains("is-success")) {
+        elem.classList.add("is-danger");
+        elem.classList.remove("is-success");
+    }
+
 }
