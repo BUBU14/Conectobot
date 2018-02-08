@@ -9,18 +9,18 @@
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
 
-
 </head>
 
 <body>
 <script type="text/javascript" src="{{ url_for('static', filename='control.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='automatic.js') }}"></script>
 <div class="container">
     <div class="columns">
         <div class="column" align="center">
             MODE
             <div class="columns">
                 <div class="column">
-                    <a class="button is-info is-medium is-outlined is-centered">Teach</a>
+                    <a class="button is-info is-medium is-outlined is-centered" id="pushTeach">Teach</a>
                     <div class="ul">
                         <div class="li">
                             <p>ACTION</p>
@@ -51,22 +51,21 @@
                             </a>
                         </div>
                         <div class="li">
-                            <a title="move" class="button is-outlined is-danger" id="move" onclick="SetGeneralMove()" >CONTROL PANEL</a>
+                            <a title="move" class="button is-outlined is-danger" id="move" onclick="SetGeneralMove()" >CONTROL PANEL JOYSTICK</a>
 
                         </div>
                     </div>
                 </div>
                 <div class="column">
-                    <a class="button is-info is-medium is-outlined is-centered">Automatic</a>
+                    <a class="button is-info is-medium is-outlined is-centered" id="pushAuto" onclick="enableAutomatic()">Automatic</a>
                     </br>
                     </br>
-                    Height<input class=" input is-warning" type="text" placeholder="Height"/>
-                    Width <input class=" input is-warning" type="text" placeholder="Width"/>
-                    Angle <input class=" input is-warning" type="text" placeholder="Angle"/>
-                    Speed <input class=" input is-warning" type="text" placeholder="Speed"/>
+                    Width <input class=" input is-warning elemAuto" disabled type="text"  placeholder="Width"/>
+                    Angle <input class=" input is-warning elemAuto" disabled type="text"  placeholder="Angle"/>
+                    Speed <input class=" input is-warning elemAuto" disabled type="text"  placeholder="Speed"/>
                     </br>
                     </br>
-                    <a class="button is-success is-rounded is-right">Start Automatic</a>
+                    <a class="button is-success is-rounded is-right elemAuto" disabled >Start Automatic</a>
                 </div>
             </div>
         </div>

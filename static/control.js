@@ -103,6 +103,7 @@ function moveUp()
     if(mousedownID==-1)
         mousedownID = setInterval(sendUp, 100);
 }
+
 function mouseMoveUp() {
     if(mousedownID!=-1) {
         var elem = document.getElementById("up");
@@ -111,6 +112,7 @@ function mouseMoveUp() {
         mousedownID=-1;
     }
 }
+
 function sendUp() {
     var elem = document.getElementById("up");
     elem.classList.add("is-success");
@@ -174,7 +176,6 @@ function moveLeft()
 {
     if(mousedownID==-1)
         mousedownID = setInterval(sendLeft, 100);
-
 }
 
 function mouseMoveLeft() {
@@ -208,12 +209,10 @@ function sendLeft() {
     });
 }
 
-
 function moveRight()
 {
     if(mousedownID==-1)
         mousedownID = setInterval(sendRight, 100);
-
 }
 
 function mouseMoveRight() {
@@ -248,7 +247,7 @@ function sendRight() {
 }
 
 function SetGeneralMove() {
-    var elem = document.getElementById("move")
+    var elem = document.getElementById("move");
     if(elem.classList.contains("is-danger")) {
         elem.classList.add("is-success");
         elem.classList.remove("is-danger");
@@ -256,6 +255,15 @@ function SetGeneralMove() {
     else if (elem.classList.contains("is-success")) {
         elem.classList.add("is-danger");
         elem.classList.remove("is-success");
+    }
+
+}
+
+function enableAutomatic(){
+    var elem = document.getElementById("elemAuto");
+
+    {
+        elem.prop("disabled",true);
     }
 
 }
