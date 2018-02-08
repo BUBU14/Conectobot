@@ -8,50 +8,50 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
-
 </head>
 
 <body>
 <script type="text/javascript" src="{{ url_for('static', filename='control.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='automatic.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='program.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='display.js') }}"></script>
 <div class="container">
     <div class="columns">
         <div class="column" align="center">
             MODE
             <div class="columns">
                 <div class="column">
-                    <a class="button is-info is-medium is-outlined is-centered" id="pushTeach">Teach</a>
+                    <a class="button is-info is-medium is-outlined is-centered" id="pushTeach" onclick="enableManual()">Teach</a>
                     <div class="ul">
                         <div class="li">
                             <p>ACTION</p>
-                            <a class="button is-rounded is-warning" id="water" value="Stop" onclick="statusWater()">Water</a>
-                            <a class="button is-rounded is-warning" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
+                            <a class="button is-rounded is-warning elemManual" id="water" disabled="false" value="Stop" onclick="statusWater()">Water</a>
+                            <a class="button is-rounded is-warning elemManual" id="brush" disabled="false" value="Stop" onclick="statusBrush()">Brush</a>
                         </div>
                         <div class="li">
                             <p>COMMANDE</p>
-                            <a title="left" class="button is-outlined" id="left" onmousedown="moveLeft()" onmouseup="mouseMoveLeft()">
+                            <a title="left" class="button is-outlined elemManual" id="left" disabled onmousedown="moveLeft()" onmouseup="mouseMoveLeft()">
                                     <span class="icon">
                                         <i class="fa fa-chevron-left"></i>
                                     </span>
                             </a>
-                            <a title="up" class="button is-outlined" id="up" onmousedown="moveUp()" onmouseup="mouseMoveUp()">
+                            <a title="up" class="button is-outlined elemManual" id="up" disabled onmousedown="moveUp()" onmouseup="mouseMoveUp()">
                                     <span class="icon">
                                         <i class="fa fa-chevron-up"></i>
                                     </span>
                             </a>
-                            <a title="down" class="button is-outlined" id="down" onmousedown="moveDown()" onmouseup="mouseMoveDown()" >
+                            <a title="down" class="button is-outlined elemManual" id="down" disabled onmousedown="moveDown()" onmouseup="mouseMoveDown()" >
                                     <span class="icon">
                                         <i class="fa fa-chevron-down"></i>
                                     </span>
                             </a>
-                            <a title="right" class="button is-outlined" id="right" onmousedown="moveRight()" onmouseup="mouseMoveRight()" >
+                            <a title="right" class="button is-outlined elemManual" id="right" disabled onmousedown="moveRight()" onmouseup="mouseMoveRight()" >
                                     <span class="icon">
                                         <i class="fa fa-chevron-right"></i>
                                     </span>
                             </a>
                         </div>
                         <div class="li">
-                            <a title="move" class="button is-outlined is-danger" id="move" onclick="SetGeneralMove()" >CONTROL PANEL JOYSTICK</a>
+                            <a title="move" class="button is-outlined is-danger elemManual" id="move" disabled onclick="SetGeneralMove()" >CONTROL PANEL JOYSTICK</a>
 
                         </div>
                     </div>
@@ -65,12 +65,11 @@
                     Speed <input class=" input is-warning elemAuto" disabled type="text"  placeholder="Speed"/>
                     </br>
                     </br>
-                    <a class="button is-success is-rounded is-right elemAuto" disabled >Start Automatic</a>
+                    <a class="button is-success is-rounded is-right elemAuto" disabled>Start Automatic</a>
                 </div>
             </div>
         </div>
     </div>
 </div>
 </body>
-
 </html>
