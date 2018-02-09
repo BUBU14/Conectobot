@@ -7,6 +7,8 @@ function runAuto()
     console.log("Witdh = "+elemW.val());
     console.log("Height = "+elemH.val());
     console.log("Speed = "+elemS.val());
+    console.log(elemS);
+    console.log(elemW);
 
     var jsonToSend = new Object();
     jsonToSend.width = elemW.val();

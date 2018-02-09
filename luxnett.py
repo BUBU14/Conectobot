@@ -75,8 +75,10 @@ def auto():
     print(post['width'])
     print(post['height'])
     print(post['speed'])
-
-    return make_response('200')
+    if (post['width'] is "" or post['height'] is "" or post['speed'] is ""):
+        return make_response('400')
+    else:
+        return make_response('200')
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0")

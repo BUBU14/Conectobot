@@ -246,14 +246,14 @@ function sendRight() {
     });
 }
 
-function SetGeneralMove() {
-    var elem = document.getElementById("move");
-    if(elem.classList.contains("is-danger")) {
+function enableJoystick() {
+    var elem = document.getElementById("joy");
+    if(elem.classList.contains("is-warning")) {
         elem.classList.add("is-success");
-        elem.classList.remove("is-danger");
+        elem.classList.remove("is-warning");
     }
     else if (elem.classList.contains("is-success")) {
-        elem.classList.add("is-danger");
+        elem.classList.add("is-warning");
         elem.classList.remove("is-success");
     }
 
