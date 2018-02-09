@@ -8,6 +8,13 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
     <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
     <script src="http://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+    <style>
+        #videoElement {
+            width: 500px;
+            height: 375px;
+            background-color: #666;
+        }
+    </style>
 </head>
 
 <body>
@@ -24,35 +31,42 @@
                     <div class="ul">
                         <div class="li">
                             <p>ACTION</p>
-                            <a class="button is-rounded is-warning elemManual" id="water" disabled="false" value="Stop" onclick="statusWater()">Water</a>
-                            <a class="button is-rounded is-warning elemManual" id="brush" disabled="false" value="Stop" onclick="statusBrush()">Brush</a>
+                            <a class="button is-rounded is-warning elemManual" id="water" value="Stop" onclick="statusWater()">Water</a>
+                            <a class="button is-rounded is-warning elemManual" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
                         </div>
                         <div class="li">
                             <p>COMMANDE</p>
-                            <a title="left" class="button is-outlined elemManual" id="left" disabled onmousedown="moveLeft()" onmouseup="mouseMoveLeft()">
-                                    <span class="icon">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </span>
-                            </a>
-                            <a title="up" class="button is-outlined elemManual" id="up" disabled onmousedown="moveUp()" onmouseup="mouseMoveUp()">
+                            <a title="up" class="button is-outlined elemManual" id="up"  onmousedown="moveUp()" onmouseup="mouseMoveUp()">
                                     <span class="icon">
                                         <i class="fa fa-chevron-up"></i>
                                     </span>
                             </a>
-                            <a title="down" class="button is-outlined elemManual" id="down" disabled onmousedown="moveDown()" onmouseup="mouseMoveDown()" >
+                            </br>
+                            <a title="left" class="button is-outlined elemManual" id="left"  onmousedown="moveLeft()" onmouseup="mouseMoveLeft()">
+                                    <span class="icon">
+                                        <i class="fa fa-chevron-left"></i>
+                                    </span>
+                            </a>
+
+                            <a title="down" class="button is-outlined elemManual" id="down"  onmousedown="moveDown()" onmouseup="mouseMoveDown()" >
                                     <span class="icon">
                                         <i class="fa fa-chevron-down"></i>
                                     </span>
                             </a>
-                            <a title="right" class="button is-outlined elemManual" id="right" disabled onmousedown="moveRight()" onmouseup="mouseMoveRight()" >
+                            <a title="right" class="button is-outlined elemManual" id="right"  onmousedown="moveRight()" onmouseup="mouseMoveRight()" >
                                     <span class="icon">
                                         <i class="fa fa-chevron-right"></i>
                                     </span>
                             </a>
                         </div>
                         <div class="li">
-                            <a title="move" class="button is-outlined is-danger elemManual" id="move" disabled onclick="SetGeneralMove()" >CONTROL PANEL JOYSTICK</a>
-
+                            <p>CAMERA</p>
+                        </div>
+                        <div class="li">
+                            <video autoplay="true" id="videoElement" onclick="startVideo()"></video>
+                        </div>
+                        <div class="li">
+                            <a class="button is-rounded is-warning elemManual" id="joy" value="Stop">joy</a>
                         </div>
                     </div>
                 </div>
@@ -60,12 +74,12 @@
                     <a class="button is-info is-medium is-outlined is-centered" id="pushAuto" onclick="enableAutomatic()">Automatic</a>
                     </br>
                     </br>
-                    Width <input class=" input is-warning elemAuto" disabled type="text"  placeholder="Width"/>
-                    Angle <input class=" input is-warning elemAuto" disabled type="text"  placeholder="Angle"/>
-                    Speed <input class=" input is-warning elemAuto" disabled type="text"  placeholder="Speed"/>
+                    Width  <input class=" input is-warning elemAuto"  type="text"  id="Width"/>
+                    Height <input class=" input is-warning elemAuto"  type="text"  id="Height"/>
+                    Speed  <input class=" input is-warning elemAuto"  type="text"  id="Speed"/>
                     </br>
                     </br>
-                    <a class="button is-success is-rounded is-right elemAuto" disabled>Start Automatic</a>
+                    <a class="button is-success is-rounded is-right elemAuto" onclick="runAuto()">Start Automatic</a>
                 </div>
             </div>
         </div>

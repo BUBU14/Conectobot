@@ -69,5 +69,14 @@ def right():
     else:
         return make_response('400')
 
+@app.route('/auto/', methods=['POST'])
+def auto():
+    post = request.get_json(force=True)
+    print(post['width'])
+    print(post['height'])
+    print(post['speed'])
+
+    return make_response('200')
+
 if __name__ == '__main__':
     app.run(host="0.0.0.0")
