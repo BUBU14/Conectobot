@@ -1,12 +1,16 @@
 from flask import Flask, render_template, request, make_response
-import json
+from automatic import mainAuto
+
+#App BACK-END
 
 app = Flask(__name__)
 
+# Route pour l'index.html
 @app.route('/')
 def hello_world():
     return render_template('index.html')
 
+# Route mode manuel
 @app.route('/brush/', methods=['POST'])
 def brush():
     post = request.get_json(force=True)
@@ -69,16 +73,37 @@ def right():
     else:
         return make_response('400')
 
+@app.route('/rightCam/', methods=['POST'])
+def rightCam():
+    post = request.get_json(force=True)
+    print(post['rightCam'])
+    if post['rightCam'] == 1:
+        return make_response('200')
+    else:
+        return make_response('400')
+
+@app.route('/leftCam/', methods=['POST'])
+def leftCam():
+    post = request.get_json(force=True)
+    print(post['leftCam'])
+    if post['leftCam'] == 1:
+        return make_response('200')
+    else:
+        return make_response('400')
+
+# Route mode auto
 @app.route('/auto/', methods=['POST'])
 def auto():
     post = request.get_json(force=True)
     print(post['width'])
     print(post['height'])
     print(post['speed'])
-    if (post['width'] is "" or post['height'] is "" or post['speed'] is ""):
+    if post['width'] is "" or post['height'] is "" or post['speed'] is "":
         return make_response('400')
     else:
+        mainAuto(post['width'] ,post['height'], post['speed'])
         return make_response('200')
+
 
 if __name__ == '__main__':
     app.run(host="0.0.0.0")

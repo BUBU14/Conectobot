@@ -14,8 +14,25 @@
             height: 375px;
             background-color: #666;
         }
+        header {
+            padding: 1em;
+            color: cornflowerblue;
+            background-color: whitesmoke;
+            clear: left;
+            text-align: center;
+        }
+        footer{
+            padding: 1em;
+            color: whitesmoke;
+            background-color: cornflowerblue;
+            clear: left;
+            text-align: center;
+        }
     </style>
 </head>
+<header>
+     Luxnett robot control board
+</header>
 
 <body>
 <script type="text/javascript" src="{{ url_for('static', filename='control.js') }}"></script>
@@ -24,7 +41,6 @@
 <div class="container">
     <div class="columns">
         <div class="column" align="center">
-            MODE
             <div class="columns">
                 <div class="column">
                     <a class="button is-info is-medium is-outlined is-centered" id="pushTeach" onclick="enableManual()">Teach</a>
@@ -35,7 +51,7 @@
                             <a class="button is-rounded is-warning elemManual" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
                         </div>
                         <div class="li">
-                            <p>COMMANDE</p>
+                            <p>ORDER</p>
                             <a title="up" class="button is-outlined elemManual" id="up"  onmousedown="moveUp()" onmouseup="mouseMoveUp()">
                                     <span class="icon">
                                         <i class="fa fa-chevron-up"></i>
@@ -50,7 +66,7 @@
 
                             <a title="down" class="button is-outlined elemManual" id="down"  onmousedown="moveDown()" onmouseup="mouseMoveDown()" >
                                     <span class="icon">
-                                        <i class="fa fa-chevron-down"></i>
+                                       <i class="fa fa-chevron-down"></i>
                                     </span>
                             </a>
                             <a title="right" class="button is-outlined elemManual" id="right"  onmousedown="moveRight()" onmouseup="mouseMoveRight()" >
@@ -64,10 +80,23 @@
                         </div>
                         <div class="li">
                             <video autoplay="true" id="videoElement" onclick="startVideo()"></video>
+                            </br>
+                            <a title="left" class="button is-outlined elemManual" id="leftCam"  onmousedown="moveLeftCam()" onmouseup="mouseMoveLeftCam()" >
+                                    <span class="icon">
+                                       <i class="fa fa-angle-double-left"></i>
+                                    </span>
+                            </a>
+                            <a title="right" class="button is-outlined elemManual" id="rightCam"  onmousedown="moveRightCam()" onmouseup="mouseMoveRightCam()" >
+                                    <span class="icon">
+                                        <i class="fa fa-angle-double-right"></i>
+                                    </span>
+                            </a>
                         </div>
+                        </br>
                         <div class="li">
                             <a class="button is-rounded is-warning elemManual" id="joy" value="Stop" onclick="enableJoystick()">joystick</a>
                         </div>
+                        </br>
                     </div>
                 </div>
                 <div class="column">
@@ -86,4 +115,7 @@
     </div>
 </div>
 </body>
+<footer>
+    created by student of IMERIR for Luxnett
+</footer>
 </html>
