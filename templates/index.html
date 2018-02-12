@@ -6,116 +6,139 @@
     <meta name="viewport" content="width=device-width">
     <title>LuxNett Control robot</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
-    <script defer src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
-    <script src="http://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
     <style>
         #videoElement {
             width: 500px;
             height: 375px;
             background-color: #666;
         }
-        header {
-            padding: 1em;
-            color: cornflowerblue;
-            background-color: whitesmoke;
-            clear: left;
-            text-align: center;
-        }
-        footer{
-            padding: 1em;
-            color: whitesmoke;
-            background-color: cornflowerblue;
-            clear: left;
-            text-align: center;
-        }
     </style>
 </head>
+
 <header>
-     Luxnett robot control board
+    <section class="hero is-primary">
+        <div class="hero-body">
+            <div class="container">
+                <h1 class="title">
+                    Luxnett Control Board
+                </h1>
+            </div>
+        </div>
+        <div class="hero-foot">
+            <nav class="tabs">
+                <div class="container">
+                    <ul>
+                        <li class="is-active"><a>Overview</a></li>
+                        <li><a>Teach</a></li>
+                        <li><a>Automatic</a></li>
+                    </ul>
+                </div>
+            </nav>
+        </div>
+    </section>
 </header>
 
 <body>
-<script type="text/javascript" src="{{ url_for('static', filename='control.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='program.js') }}"></script>
-<script type="text/javascript" src="{{ url_for('static', filename='display.js') }}"></script>
 <div class="container">
     <div class="columns">
         <div class="column" align="center">
-            <div class="columns">
-                <div class="column">
-                    <a class="button is-info is-medium is-outlined is-centered" id="pushTeach" onclick="enableManual()">Teach</a>
-                    <div class="ul">
-                        <div class="li">
-                            <p>ACTION</p>
-                            <a class="button is-rounded is-warning elemManual" id="water" value="Stop" onclick="statusWater()">Water</a>
-                            <a class="button is-rounded is-warning elemManual" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
-                        </div>
-                        <div class="li">
-                            <p>ORDER</p>
-                            <a title="up" class="button is-outlined elemManual" id="up"  onmousedown="moveUp()" onmouseup="mouseMoveUp()">
-                                    <span class="icon">
-                                        <i class="fa fa-chevron-up"></i>
-                                    </span>
-                            </a>
-                            </br>
-                            <a title="left" class="button is-outlined elemManual" id="left"  onmousedown="moveLeft()" onmouseup="mouseMoveLeft()">
-                                    <span class="icon">
-                                        <i class="fa fa-chevron-left"></i>
-                                    </span>
-                            </a>
+            <div class="ul">
+                <div class="li">
+                    <p class="title is-3 is-spaced">ACTION</p>
+                    <a class="button is-rounded is-warning elemManual" id="water" value="Stop" onclick="statusWater()">Water</a>
+                    <a class="button is-rounded is-warning elemManual" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
+                </div>
+                <div class="li">
+                    <p class="title is-3 is-spaced">CAMERA</p>
+                </div>
+                <div class="li">
+                    <video autoplay="true" id="videoElement" onclick="startVideo()"></video>
+                    </br>
+                    <a title="left" class="button is-outlined elemManual" id="leftCam"  onmousedown="moveLeftCam()" onmouseup="mouseMoveLeftCam()" >
+                        <span class="icon">
+                            <i class="fa fa-angle-double-left"></i>
+                        </span>
+                    </a>
+                    <a title="right" class="button is-outlined elemManual" id="rightCam"  onmousedown="moveRightCam()" onmouseup="mouseMoveRightCam()" >
+                        <span class="icon">
+                            <i class="fa fa-angle-double-right"></i>
+                        </span>
+                    </a>
+                </div>
+                </br>
+            </div>
+        </div>
+        <div class="column" align="center">
+            <div class="li">
+                <p class="title is-3 is-spaced">ORDER</p>
+                <a title="up" class="button is-outlined elemManual" id="up"  onmousedown="moveUp()" onmouseup="mouseMoveUp()">
+                    <span class="icon">
+                        <i class="fa fa-chevron-up"></i>
+                    </span>
+                </a>
+                </br>
+                <a title="left" class="button is-outlined elemManual" id="left"  onmousedown="moveLeft()" onmouseup="mouseMoveLeft()">
+                    <span class="icon">
+                        <i class="fa fa-chevron-left"></i>
+                    </span>
+                </a>
 
-                            <a title="down" class="button is-outlined elemManual" id="down"  onmousedown="moveDown()" onmouseup="mouseMoveDown()" >
-                                    <span class="icon">
-                                       <i class="fa fa-chevron-down"></i>
-                                    </span>
-                            </a>
-                            <a title="right" class="button is-outlined elemManual" id="right"  onmousedown="moveRight()" onmouseup="mouseMoveRight()" >
-                                    <span class="icon">
-                                        <i class="fa fa-chevron-right"></i>
-                                    </span>
-                            </a>
-                        </div>
-                        <div class="li">
-                            <p>CAMERA</p>
-                        </div>
-                        <div class="li">
-                            <video autoplay="true" id="videoElement" onclick="startVideo()"></video>
-                            </br>
-                            <a title="left" class="button is-outlined elemManual" id="leftCam"  onmousedown="moveLeftCam()" onmouseup="mouseMoveLeftCam()" >
-                                    <span class="icon">
-                                       <i class="fa fa-angle-double-left"></i>
-                                    </span>
-                            </a>
-                            <a title="right" class="button is-outlined elemManual" id="rightCam"  onmousedown="moveRightCam()" onmouseup="mouseMoveRightCam()" >
-                                    <span class="icon">
-                                        <i class="fa fa-angle-double-right"></i>
-                                    </span>
-                            </a>
-                        </div>
-                        </br>
-                        <div class="li">
-                            <a class="button is-rounded is-warning elemManual" id="joy" value="Stop" onclick="enableJoystick()">joystick</a>
-                        </div>
-                        </br>
-                    </div>
+                <a title="down" class="button is-outlined elemManual" id="down"  onmousedown="moveDown()" onmouseup="mouseMoveDown()" >
+                    <span class="icon">
+                        <i class="fa fa-chevron-down"></i>
+                    </span>
+                </a>
+                <a title="right" class="button is-outlined elemManual" id="right"  onmousedown="moveRight()" onmouseup="mouseMoveRight()" >
+                    <span class="icon">
+                        <i class="fa fa-chevron-right"></i>
+                    </span>
+                </a>
+            </div>
+            </br>
+            </br>
+            <div class="li">
+                <p class="title is-3 is-spaced">JOYSTICK</p>
+                <div id="dynamic">
+
                 </div>
-                <div class="column">
-                    <a class="button is-info is-medium is-outlined is-centered" id="pushAuto" onclick="enableAutomatic()">Automatic</a>
-                    </br>
-                    </br>
-                    Width  <input class=" input is-warning elemAuto"  type="text"  id="Width"/>
-                    Height <input class=" input is-warning elemAuto"  type="text"  id="Height"/>
-                    Speed  <input class=" input is-warning elemAuto"  type="text"  id="Speed"/>
-                    </br>
-                    </br>
-                    <a class="button is-success is-rounded is-right elemAuto" onclick="runAuto()">Start Automatic</a>
-                </div>
+                </br>
             </div>
         </div>
     </div>
+    <div>
+        </br>
+        </br>
+        Width  <input class=" input is-warning elemAuto"  type="text"  id="Width"/>
+        Height <input class=" input is-warning elemAuto"  type="text"  id="Height"/>
+        Speed  <input class=" input is-warning elemAuto"  type="text"  id="Speed"/>
+        </br>
+        </br>
+        <a class="button is-success is-rounded is-right elemAuto" onclick="runAuto()">Start Automatic</a>
+    </div>
 </div>
 </body>
-<footer>
-    created by student of IMERIR for Luxnett
+
+<footer class="footer">
+    <div class="container">
+        <div class="content has-text-centered">
+            <p>
+                Created by student of IMERIR to Luxnett
+            </p>
+        </div>
+    </div>
 </footer>
+
+<script src="https://use.fontawesome.com/releases/v5.0.0/js/all.js"></script>
+<script src="http://code.jquery.com/jquery-3.3.1.min.js" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/nipplejs/0.6.8/nipplejs.min.js"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='control.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='program.js') }}"></script>
+<script type="text/javascript" src="{{ url_for('static', filename='display.js') }}"></script>
+<script>
+    var dynamic = nipplejs.create({
+        zone: document.getElementById('dynamic'),
+        color: 'blue'
+    });
+</script>
+
 </html>
