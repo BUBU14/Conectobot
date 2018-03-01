@@ -95,9 +95,6 @@ def leftCam():
 @app.route('/auto/', methods=['POST'])
 def auto():
     post = request.get_json(force=True)
-    print(post['width'])
-    print(post['height'])
-    print(post['speed'])
     if post['width'] is "" or post['height'] is "" or post['speed'] is "":
         return make_response('400')
     else:

@@ -4,9 +4,9 @@ function runAuto()
     var elemW = $("#Height");
     var elemS = $("#Speed");
 
-    console.log("Witdh = "+elemW.val());
+    console.log("Witdh  = "+elemW.val());
     console.log("Height = "+elemH.val());
-    console.log("Speed = "+elemS.val());
+    console.log("Speed  = "+elemS.val());
 
     var jsonToSend = new Object();
     jsonToSend.width = elemW.val();
