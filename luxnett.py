@@ -95,11 +95,12 @@ def leftCam():
 @app.route('/auto/', methods=['POST'])
 def auto():
     post = request.get_json(force=True)
-    if post['width'] is "" or post['height'] is "" or post['speed'] is "":
-        return make_response('400')
-    else:
-        mainAuto(post['width'] ,post['height'], post['speed'])
+    status = mainAuto(post['width'] ,post['height'], post['speed'])
+
+    if status ==1:
         return make_response('200')
+    else :
+        return make_response('201')
 
 
 if __name__ == '__main__':
