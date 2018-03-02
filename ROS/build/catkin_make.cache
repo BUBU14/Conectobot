@@ -1,2 +1,0 @@
-
--DCATKIN_DEVEL_PREFIX=/home/bubu/Desktop/luxnett/luxnett/ROS/devel -DCMAKE_INSTALL_PREFIX=/home/bubu/Desktop/luxnett/luxnett/ROS/install -G Unix Makefiles
