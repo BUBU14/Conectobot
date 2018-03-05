@@ -28,9 +28,9 @@
             <nav class="tabs">
                 <div class="container">
                     <ul>
-                        <li class="is-active"><a>Overview</a></li>
-                        <li><a>Teach</a></li>
-                        <li><a>Automatic</a></li>
+                        <li class="is-active"><a  onclick="overviewPage()">Overview</a></li>
+                        <li><a onclick="teachPage()">Teach</a></li>
+                        <li><a onclick="automaticPage()">Automatic</a></li>
                     </ul>
                 </div>
             </nav>
@@ -40,7 +40,24 @@
 
 <body>
 <div class="container">
-    <div class="columns">
+    <div class="li">
+        <p class="title is-3 is-spaced" align="center">CAMERA</p>
+    </div>
+    <div class="li" align="center">
+        <video autoplay="true" id="videoElement" onclick="startVideo()"></video>
+        </br>
+        <a title="left" class="button is-outlined elemManual" id="leftCam"  onmousedown="moveLeftCam()" onmouseup="mouseMoveLeftCam()" >
+                        <span class="icon">
+                            <i class="fa fa-angle-double-left"></i>
+                        </span>
+        </a>
+        <a title="right" class="button is-outlined elemManual" id="rightCam"  onmousedown="moveRightCam()" onmouseup="mouseMoveRightCam()" >
+                        <span class="icon">
+                            <i class="fa fa-angle-double-right"></i>
+                        </span>
+        </a>
+    </div>
+    <div class="columns is-hidden" data-nav="manuel" >
         <div class="column" align="center">
             <div class="ul">
                 <div class="li">
@@ -48,52 +65,35 @@
                     <a class="button is-rounded is-warning elemManual" id="water" value="Stop" onclick="statusWater()">Water</a>
                     <a class="button is-rounded is-warning elemManual" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
                 </div>
-                <div class="li">
-                    <p class="title is-3 is-spaced">CAMERA</p>
-                </div>
-                <div class="li">
-                    <video autoplay="true" id="videoElement" onclick="startVideo()"></video>
-                    </br>
-                    <a title="left" class="button is-outlined elemManual" id="leftCam"  onmousedown="moveLeftCam()" onmouseup="mouseMoveLeftCam()" >
-                        <span class="icon">
-                            <i class="fa fa-angle-double-left"></i>
-                        </span>
-                    </a>
-                    <a title="right" class="button is-outlined elemManual" id="rightCam"  onmousedown="moveRightCam()" onmouseup="mouseMoveRightCam()" >
-                        <span class="icon">
-                            <i class="fa fa-angle-double-right"></i>
-                        </span>
-                    </a>
-                </div>
                 </br>
-            </div>
-        </div>
-        <div class="column" align="center">
-            <div class="li">
-                <p class="title is-3 is-spaced">ORDER</p>
-                <a title="up" class="button is-outlined elemManual" id="up"  onmousedown="moveUp()" onmouseup="mouseMoveUp()">
+                <div class="li">
+                    <p class="title is-3 is-spaced">ORDER</p>
+                    <a title="up" class="button is-outlined elemManual" id="up"  onmousedown="moveUp()" onmouseup="mouseMoveUp()">
                     <span class="icon">
                         <i class="fa fa-chevron-up"></i>
                     </span>
-                </a>
-                </br>
-                <a title="left" class="button is-outlined elemManual" id="left"  onmousedown="moveLeft()" onmouseup="mouseMoveLeft()">
+                    </a>
+                    </br>
+                    <a title="left" class="button is-outlined elemManual" id="left"  onmousedown="moveLeft()" onmouseup="mouseMoveLeft()">
                     <span class="icon">
                         <i class="fa fa-chevron-left"></i>
                     </span>
-                </a>
+                    </a>
 
-                <a title="down" class="button is-outlined elemManual" id="down"  onmousedown="moveDown()" onmouseup="mouseMoveDown()" >
+                    <a title="down" class="button is-outlined elemManual" id="down"  onmousedown="moveDown()" onmouseup="mouseMoveDown()" >
                     <span class="icon">
                         <i class="fa fa-chevron-down"></i>
                     </span>
-                </a>
-                <a title="right" class="button is-outlined elemManual" id="right"  onmousedown="moveRight()" onmouseup="mouseMoveRight()" >
+                    </a>
+                    <a title="right" class="button is-outlined elemManual" id="right"  onmousedown="moveRight()" onmouseup="mouseMoveRight()" >
                     <span class="icon">
                         <i class="fa fa-chevron-right"></i>
                     </span>
-                </a>
+                    </a>
+                </div>
             </div>
+        </div>
+        <div class="column" align="center">
             </br>
             </br>
             <div class="li">
@@ -105,7 +105,7 @@
             </div>
         </div>
     </div>
-    <div>
+    <div class="is-hidden" data-nav="automatic" >
         </br>
         </br>
         Width (meter)  <input class=" input is-warning elemAuto"  type="text"  id="Width"/>
