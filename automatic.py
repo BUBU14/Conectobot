@@ -9,11 +9,9 @@ def mainAuto(width,height,speed):
 
 def start():
     moveInfo = "LR"
-    capteurL = 0
-    capteurR = 0
     capteurH = 0
     while(finish != 1):
-        while (capteurH == 0):
+        while (capteurH ==0):
             print("GPIO 1")
         if capteurH:
             moveInfo = changeDirection(moveInfo)
@@ -25,7 +23,6 @@ def changeDirection(moveInfo):
         offset()
         rotation("R")
         return "RL"
-
     else:
         rotation("L")
         offset()
@@ -39,11 +36,11 @@ def rotation(direction):
     print("turn " + str(direction) )
     if direction == "R":
         print("GPIO 2")
-        time.sleep(10)
+        time.sleep(2)
     if direction == "L":
         print("GPIO 3")
-        time.sleep(10)
-    time.sleep(10)
+        time.sleep(2)
+    time.sleep(2)
 
 def calculDuration(width, height,speed):
     duration =(int(width) * int(height))/int(speed)
