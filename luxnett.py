@@ -22,6 +22,7 @@ def brush():
     else:
         print("error")
         return make_response('400')
+    print("GPIO 10")
     return make_response('200')
 
 @app.route('/water/', methods=['POST'])
@@ -35,6 +36,7 @@ def water():
     else:
         print("error")
         return make_response('400')
+    print("GPIO 11")
     return make_response('200')
 
 @app.route('/up/', methods=['POST'])
@@ -77,6 +79,7 @@ def right():
 def rightCam():
     post = request.get_json(force=True)
     print(post['rightCam'])
+    printf("GPIO 14")
     if post['rightCam'] == 1:
         return make_response('200')
     else:
@@ -86,6 +89,7 @@ def rightCam():
 def leftCam():
     post = request.get_json(force=True)
     print(post['leftCam'])
+    print("GPIO 15")
     if post['leftCam'] == 1:
         return make_response('200')
     else:
