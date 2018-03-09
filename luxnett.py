@@ -1,6 +1,7 @@
 from flask import Flask, render_template, request, make_response
 from automatic import mainAuto
 
+import time
 #App BACK-END
 
 app = Flask(__name__)
@@ -39,6 +40,15 @@ def water():
     print("GPIO 11")
     return make_response('200')
 
+@app.route('/back/', methods=['POST'])
+def back():
+    post = request.get_json(force=True)
+
+    print(post)
+    print("GPIO 15")
+    time.sleep(10)
+    return make_response('200')
+
 @app.route('/up/', methods=['POST'])
 def up():
     post = request.get_json(force=True)
@@ -75,6 +85,13 @@ def right():
     else:
         return make_response('400')
 
+@app.route('/joys/', methods=['POST'])
+def joys():
+    post = request.get_json(force=True)
+    print("\n reception: \n\t X :" + post['x'] + "\n\t Y :" +post['y'])
+    return make_response('200')
+
+
 @app.route('/rightCam/', methods=['POST'])
 def rightCam():
     post = request.get_json(force=True)
@@ -105,6 +122,7 @@ def auto():
         return make_response('200')
     else :
         return make_response('201')
+
 
 
 if __name__ == '__main__':

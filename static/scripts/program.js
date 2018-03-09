@@ -19,39 +19,29 @@ function runAuto()
     }
     else
     {
-        $("#Width").removeClass("is-warning");
-        $("#Width").removeClass("is-danger");
-        $("#Width").addClass("is-success");
+        $("#Width").removeClass("is-warning is-danger").addClass("is-success");
         dataOk += 1
     }
     jsonToSend.height = elemH.val();
     if (elemH.val() == "")
     {
-        $("#Height").removeClass("is-warning");
-        $("#Height").removeClass("is-success");
-        $("#Height").addClass("is-danger");
+        $("#Height").removeClass("is-warning is-success").addClass("is-danger");
         dataOk -= 1
     }
     else
     {
-        $("#Height").removeClass("is-warning");
-        $("#Height").removeClass("is-danger");
-        $("#Height").addClass("is-success");
+        $("#Height").removeClass("is-warning is-danger").addClass("is-success");
         dataOk += 1
     }
     jsonToSend.speed = elemS.val();
     if (elemS.val() == "")
     {
-        $("#Speed").removeClass("is-warning");
-        $("#Speed").removeClass("is-success");
-        $("#Speed").addClass("is-danger");
+        $("#Speed").removeClass("is-warning is-success").addClass("is-danger");
         dataOk -= 1
     }
     else
     {
-        $("#Speed").removeClass("is-warning");
-        $("#Speed").removeClass("is-danger");
-        $("#Speed").addClass("is-success");
+        $("#Speed").removeClass("is-warning is-danger").addClass("is-success");
         dataOk += 1
     }
 
