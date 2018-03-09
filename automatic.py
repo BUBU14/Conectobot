@@ -1,5 +1,5 @@
 import time
-import RPi.GPIO as GPIO
+
 finish = 0
 def mainAuto(width,height,speed):
     print("i'm start auto")

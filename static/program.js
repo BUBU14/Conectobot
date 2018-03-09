@@ -14,9 +14,7 @@ function runAuto()
     jsonToSend.width = elemW.val();
     if (elemW.val() == "")
     {
-        $("#Width").removeClass("is-warning");
-        $("#Width").removeClass("is-success");
-        $("#Width").addClass("is-danger");
+        $("#Width").removeClass("is-warning is-success").addClass("is-danger");
         dataOk -= 1
     }
     else
