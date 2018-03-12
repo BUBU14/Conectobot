@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, make_response
 from automatic import mainAuto
-
+import RPi.GPIO as GPIO
 import time
 #App BACK-END
 # 10.30.0.199
@@ -97,7 +97,7 @@ def joys():
 def rightCam():
     post = request.get_json(force=True)
     print(post['rightCam'])
-    printf("GPIO 14")
+    print("GPIO 14")
     if post['rightCam'] == 1:
         return make_response('200')
     else:
