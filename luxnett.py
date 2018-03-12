@@ -3,6 +3,7 @@ from automatic import mainAuto
 
 import time
 #App BACK-END
+# 10.30.0.199
 
 app = Flask(__name__)
 
