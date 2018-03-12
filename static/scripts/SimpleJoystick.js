@@ -230,5 +230,6 @@ function GetJoystick_Y()
 
 function stopJoystick()
 {
+
     JoystickReady = false ;
 }

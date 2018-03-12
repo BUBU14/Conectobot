@@ -88,7 +88,7 @@ def right():
 @app.route('/joys/', methods=['POST'])
 def joys():
     post = request.get_json(force=True)
-    print("\n reception: \n\t X :" + post['x'] + "\n\t Y :" +post['y'])
+    print("\n reception: \n\t X :" , post['x'] , "\n\t Y :" ,post['y'])
     return make_response('200')
 
 
