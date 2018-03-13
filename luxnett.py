@@ -7,6 +7,9 @@ import time
 
 brushPIN = 18
 
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(brushPIN, GPIO.OUT)
+
 app = Flask(__name__)
 
 # Route pour l'index.html
@@ -17,16 +20,14 @@ def hello_world():
 # Route mode manuel
 @app.route('/brush/', methods=['POST'])
 def brush():
-    GPIO.setmode(GPIO.BOARD)
-    GPIO.setup(brushPIN, GPIO.OUT)
     post = request.get_json(force=True)
     print(post['state'])
     if post['state'] == 1:
         print("enable brush")
-        GPIO.output(brushPIN, 1)
+        GPIO.output(brushPIN,1)
     elif post['state'] == 0:
         print("disable brush")
-        GPIO.output(brushPIN, 0)
+        GPIO.output(brushPIN,0)
     else:
         print("error")
         return make_response('400')
