@@ -73,3 +73,8 @@ function sendLeftCam() {
         }
     });
 }
+
+function startVideo()
+{
+
+}

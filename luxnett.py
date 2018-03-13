@@ -7,8 +7,8 @@ import time
 
 brushPIN = 18
 
-GPIO.setmode(GPIO.BCM)
-GPIO.setup(brushPIN, GPIO.OUT)
+GPIO.setmode(GPIO.BOARD)
+GPIO.setup(18, GPIO.OUT)
 
 app = Flask(__name__)
 
