@@ -30,6 +30,8 @@ def brush():
         return make_response('400')
     return make_response('200')
 
+
+
 @app.route('/water/', methods=['POST'])
 def water():
     post = request.get_json(force=True)
