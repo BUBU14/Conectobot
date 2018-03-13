@@ -4,8 +4,11 @@ import RPi.GPIO as GPIO
 import time
 #App BACK-END
 # 10.30.0.199
+
+brushPIN = 12
+
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(4,GPIO.OUT)
+GPIO.setup(brushPIN,GPIO.OUT)
 
 app = Flask(__name__)
 
@@ -21,10 +24,10 @@ def brush():
     print(post['state'])
     if post['state'] == 1:
         print("enable brush")
-        GPIO.output(4, True)
+        GPIO.output(brushPIN, True)
     elif post['state'] == 0:
         print("disable brush")
-        GPIO.output(4, False)
+        GPIO.output(brushPIN, False)
     else:
         print("error")
         return make_response('400')
