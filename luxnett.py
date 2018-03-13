@@ -24,10 +24,10 @@ def brush():
     print(post['state'])
     if post['state'] == 1:
         print("enable brush")
-        GPIO.output(brushPIN, True)
+        GPIO.output(brushPIN, 1)
     elif post['state'] == 0:
         print("disable brush")
-        GPIO.output(brushPIN, False)
+        GPIO.output(brushPIN, 0)
     else:
         print("error")
         return make_response('400')
