@@ -5,7 +5,7 @@ import time
 #App BACK-END
 # 10.30.0.199
 
-brushPIN = 12
+brushPIN = 18
 
 app = Flask(__name__)
 
