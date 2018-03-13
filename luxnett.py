@@ -7,8 +7,6 @@ import time
 
 brushPIN = 12
 
-
-
 app = Flask(__name__)
 
 # Route pour l'index.html
