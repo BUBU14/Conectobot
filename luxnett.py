@@ -5,7 +5,7 @@ import time
 #App BACK-END
 # 10.30.0.199
 GPIO.setmode(GPIO.BOARD)
-GPIO.setup(25,GPIO.OUT)
+GPIO.setup(12,GPIO.OUT)
 
 app = Flask(__name__)
 
@@ -21,10 +21,10 @@ def brush():
     print(post['state'])
     if post['state'] == 1:
         print("enable brush")
-        GPIO.output(25, True)
+        GPIO.output(12, True)
     elif post['state'] == 0:
         print("disable brush")
-        GPIO.output(25, False)
+        GPIO.output(12, False)
     else:
         print("error")
         return make_response('400')
