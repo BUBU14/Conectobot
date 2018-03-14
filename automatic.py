@@ -1,4 +1,19 @@
+import RPi.GPIO as GPIO
 import time
+
+orderDownPIN = 16
+orderUpPIN = 17
+orderLeftPIN = 20
+orderRightPIN =	22
+turnBackPIN = 25
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setup(16, GPIO.OUT)
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(20, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
+GPIO.setup(25, GPIO.OUT)
+
 
 finish = 0
 def mainAuto(width,height,speed):
@@ -13,7 +28,7 @@ def start():
     capteurH = 0
     while(finish != 1):
         while (capteurH ==0):
-            print("GPIO 1")
+            GPIO.output(orderUpPIN, 1)
         if capteurH:
             moveInfo = changeDirection(moveInfo)
     return 1
@@ -36,10 +51,10 @@ def offset():
 def rotation(direction):
     print("turn " + str(direction) )
     if direction == "R":
-        print("GPIO 2")
+        GPIO.output(orderRightPIN, 1)
         time.sleep(2)
     if direction == "L":
-        print("GPIO 3")
+        GPIO.output(orderLeftPIN, 1)
         time.sleep(2)
     time.sleep(2)
 

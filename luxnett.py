@@ -5,10 +5,26 @@ import time
 #App BACK-END
 # 10.30.0.199
 
+orderDownPIN = 16
+orderUpPIN = 17
 brushPIN = 18
+waterPIN = 19
+orderLeftPIN = 20
+orderRightPIN =	22
+turnLeftCamPIN = 23
+turnRightCamPIN	= 24
+turnBackPIN = 25
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setup(16, GPIO.OUT)
+GPIO.setup(17, GPIO.OUT)
 GPIO.setup(18, GPIO.OUT)
+GPIO.setup(19, GPIO.OUT)
+GPIO.setup(20, GPIO.OUT)
+GPIO.setup(22, GPIO.OUT)
+GPIO.setup(23, GPIO.OUT)
+GPIO.setup(24, GPIO.OUT)
+GPIO.setup(25, GPIO.OUT)
 
 app = Flask(__name__)
 
@@ -40,12 +56,13 @@ def water():
     print(post['state'])
     if post['state'] == 1:
         print("enable water")
+        GPIO.output(waterPIN, 1)
     elif post['state'] == 0:
         print("disable water")
+        GPIO.output(waterPIN, 0)
     else:
         print("error")
         return make_response('400')
-    print("GPIO 11")
     return make_response('200')
 
 @app.route('/back/', methods=['POST'])
@@ -53,7 +70,7 @@ def back():
     post = request.get_json(force=True)
 
     print(post)
-    print("GPIO 15")
+    GPIO.output(turnBackPIN, 1)
     time.sleep(10)
     return make_response('200')
 
@@ -61,6 +78,7 @@ def back():
 def up():
     post = request.get_json(force=True)
     print(post['up'])
+    GPIO.output(orderUpPIN, 1)
     if post['up'] == 1:
         return make_response('200')
     else:
@@ -70,6 +88,7 @@ def up():
 def down():
     post = request.get_json(force=True)
     print(post['down'])
+    GPIO.output(orderDownPIN, 1)
     if post['down'] == 1:
         return make_response('200')
     else:
@@ -79,6 +98,7 @@ def down():
 def left():
     post = request.get_json(force=True)
     print(post['left'])
+    GPIO.output(orderLeftPIN, 1)
     if post['left'] == 1:
         return make_response('200')
     else:
@@ -88,6 +108,7 @@ def left():
 def right():
     post = request.get_json(force=True)
     print(post['right'])
+    GPIO.output(orderRightPIN, 1)
     if post['right'] == 1:
         return make_response('200')
     else:
@@ -97,6 +118,7 @@ def right():
 def joys():
     post = request.get_json(force=True)
     print("\n reception: \n\t X :" , post['x'] , "\n\t Y :" ,post['y'])
+    ##### FUNCTION
     return make_response('200')
 
 
@@ -104,7 +126,7 @@ def joys():
 def rightCam():
     post = request.get_json(force=True)
     print(post['rightCam'])
-    print("GPIO 14")
+    GPIO.output(turnRightCamPIN, 1)
     if post['rightCam'] == 1:
         return make_response('200')
     else:
@@ -114,7 +136,7 @@ def rightCam():
 def leftCam():
     post = request.get_json(force=True)
     print(post['leftCam'])
-    print("GPIO 15")
+    GPIO.output(turnLeftCamPIN, 1)
     if post['leftCam'] == 1:
         return make_response('200')
     else:
