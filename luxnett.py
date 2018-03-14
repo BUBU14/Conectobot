@@ -159,6 +159,7 @@ def auto():
 @app.route('/autoS/', methods=['POST'])
 def autoS():
     post = request.get_json(force=True)
+    print(post)
     stopAuto()
 
 

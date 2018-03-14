@@ -65,5 +65,5 @@ def calculDuration(width, height,speed):
     print("Duration of clean: " + str(duration) + "minutes")
 
 def stopAuto():
-    finish  =1
     print("i want to kill programm")
+    finish = 1
