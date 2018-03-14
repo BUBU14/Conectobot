@@ -8,6 +8,7 @@ orderRightPIN =	22
 turnBackPIN = 25
 
 GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
 GPIO.setup(16, GPIO.OUT)
 GPIO.setup(17, GPIO.OUT)
 GPIO.setup(20, GPIO.OUT)
