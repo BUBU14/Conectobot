@@ -28,7 +28,7 @@ def start():
     moveInfo = "LR"
     capteurH = 0
     while(finish != 1):
-        while (capteurH ==0):
+        while (capteurH ==0) :
             GPIO.output(orderUpPIN, 1)
         if capteurH:
             moveInfo = changeDirection(moveInfo)
@@ -65,3 +65,4 @@ def calculDuration(width, height,speed):
 
 def stopAuto():
     finish  =1
+    print("i want to kill programm")
