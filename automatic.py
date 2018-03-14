@@ -16,6 +16,7 @@ GPIO.setup(25, GPIO.OUT)
 
 
 finish = 0
+
 def mainAuto(width,height,speed):
     print("i'm start auto")
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
@@ -62,3 +63,5 @@ def calculDuration(width, height,speed):
     duration =(int(width) * int(height))/int(speed)
     print("Duration of clean: " + str(duration) + "minutes")
 
+def stopAuto():
+    finish  =1

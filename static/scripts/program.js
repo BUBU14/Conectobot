@@ -70,3 +70,20 @@ function runAuto()
         });
     }
 }
+
+function stopAuto()
+{
+    var jsonString = JSON.stringify(400, null, '\t');
+    $.ajax({
+            url: '/autoS/',
+            type: 'POST',
+            dataType: 'application/json;charset=UTF-8',
+            data: jsonString,
+            statusCode: {
+                200: function () {
+                    console.log("program finish with no error !");
+                }
+
+            }
+        });
+}

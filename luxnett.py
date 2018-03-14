@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request, make_response
-from automatic import mainAuto
+from automatic import mainAuto, stopAuto
 import RPi.GPIO as GPIO
 import time
 #App BACK-END
@@ -153,6 +153,10 @@ def auto():
     else :
         return make_response('201')
 
+@app.route('/autoS/', methods=['POST'])
+def autoS():
+    post = request.get_json(force=True)
+    stopAuto()
 
 
 if __name__ == '__main__':
