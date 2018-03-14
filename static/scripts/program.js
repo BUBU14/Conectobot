@@ -73,7 +73,12 @@ function runAuto()
 
 function stopAuto()
 {
-    var jsonString = JSON.stringify(400, null, '\t');
+    var jsonToSend = new Object() ;
+
+    jsonToSend.stopval = 400 ;
+
+    var jsonString = JSON.stringify(jsonToSend, null, '\t');
+    console.log("j'arrete le programm auto")
     $.ajax({
             url: '/autoS/',
             type: 'POST',
