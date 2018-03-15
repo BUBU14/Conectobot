@@ -44,7 +44,7 @@ function sendEndRightCam() {
     jsonToSend.rightCam = 0;
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
     $.ajax({
-        url: '/up/',
+        url: '/rightCam/',
         type: 'POST',
         dataType: 'application/json;charset=UTF-8',
         data: jsonString,
@@ -105,7 +105,7 @@ function sendEndLeftCam() {
     jsonToSend.leftCam = 0;
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
     $.ajax({
-        url: '/up/',
+        url: '/leftCam/',
         type: 'POST',
         dataType: 'application/json;charset=UTF-8',
         data: jsonString,
