@@ -92,15 +92,15 @@ def up():
     else:
         return make_response('400')
 
-
-
-
 @app.route('/down/', methods=['POST'])
 def down():
     post = request.get_json(force=True)
-    print(post['down'])
-    GPIO.output(orderDownPIN, 1)
     if post['down'] == 1:
+        print("go down")
+        GPIO.output(orderDownPIN, 1)
+    elif post['down'] == 1:
+        print("stop down")
+        GPIO.output(orderDownPIN, 0)
         return make_response('200')
     else:
         return make_response('400')
@@ -108,9 +108,13 @@ def down():
 @app.route('/left/', methods=['POST'])
 def left():
     post = request.get_json(force=True)
-    print(post['left'])
-    GPIO.output(orderLeftPIN, 1)
     if post['left'] == 1:
+        print("go left")
+        GPIO.output(orderLeftPIN, 1)
+        return make_response('200')
+    elif post['left'] == 0:
+        print("stop left")
+        GPIO.output(orderLeftPIN, 0)
         return make_response('200')
     else:
         return make_response('400')
@@ -118,9 +122,14 @@ def left():
 @app.route('/right/', methods=['POST'])
 def right():
     post = request.get_json(force=True)
-    print(post['right'])
-    GPIO.output(orderRightPIN, 1)
+
     if post['right'] == 1:
+        print("go right")
+        GPIO.output(orderRightPIN, 1)
+        return make_response('200')
+    elif post['right'] == 0:
+        print("stop right")
+        GPIO.output(orderRightPIN, 0)
         return make_response('200')
     else:
         return make_response('400')
@@ -136,9 +145,13 @@ def joys():
 @app.route('/rightCam/', methods=['POST'])
 def rightCam():
     post = request.get_json(force=True)
-    print(post['rightCam'])
-    GPIO.output(turnRightCamPIN, 1)
     if post['rightCam'] == 1:
+        print("go right pi cam")
+        GPIO.output(turnRightCamPIN, 1)
+        return make_response('200')
+    elif post['rightCam'] == 0:
+        print("go right pi cam")
+        GPIO.output(turnRightCamPIN, 0)
         return make_response('200')
     else:
         return make_response('400')
@@ -146,12 +159,20 @@ def rightCam():
 @app.route('/leftCam/', methods=['POST'])
 def leftCam():
     post = request.get_json(force=True)
-    print(post['leftCam'])
-    GPIO.output(turnLeftCamPIN, 1)
     if post['leftCam'] == 1:
+        print(post['leftCam'])
+        GPIO.output(turnLeftCamPIN, 1)
+        return make_response('200')
+    if post['leftCam'] == 0:
+        print(post['leftCam'])
+        GPIO.output(turnLeftCamPIN, 1)
         return make_response('200')
     else:
         return make_response('400')
+
+
+
+
 
 # Route mode auto
 @app.route('/auto/', methods=['POST'])
