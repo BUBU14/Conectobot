@@ -29,6 +29,7 @@
                     <ul>
                         <li class="is-active"><a  onclick="overviewPage()">Overview</a></li>
                         <li><a onclick="teachPage()">Teach</a></li>
+                        <li><a onclick="joystickPage()">Joystick</a></li>
                         <li><a onclick="automaticPage()">Automatic</a></li>
                     </ul>
                 </div>
@@ -94,7 +95,12 @@
             <a class=" button  is-rounded is-success" id="loadJ" onclick="LoadJoystick()">Load Joystick</a>
             <a class=" button  is-rounded is-danger" id="stopJ" onclick="stopJoystick()">Stop Joystick</a>
             </br>
-            <div class="JoystickZone">
+
+        </div>
+        </br>
+    </div>
+    <div class="columns is-hidden is-center" data-nav="joystick" >
+                    <div class="JoystickZone">
                 <div class="JoystickMain" id="JoystickMain">
                     <div class="Joystick" id="Joystick">
                         <script type="text/javascript">
@@ -129,10 +135,7 @@
             <div id="log">
 
             </div>
-        </div>
-        </br>
     </div>
-
 
     <div class="is-hidden" data-nav="automatic" >
         </br>
