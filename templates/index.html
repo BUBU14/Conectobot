@@ -90,6 +90,10 @@
             </br>
             <a class="button is-rounded is-warning elemManual" id="back" onclick="statusBack()">Turn back</a>
         </div>
+
+        </br>
+    </div>
+    <div class="columns is-hidden is-center" data-nav="joystick" >
         <div class="column" align="center">
             <p class="title is-3 is-spaced is-center">JOYSTICK</p>
             <a class=" button  is-rounded is-success" id="loadJ" onclick="LoadJoystick()">Load Joystick</a>
@@ -97,44 +101,41 @@
             </br>
 
         </div>
-        </br>
-    </div>
-    <div class="columns is-hidden is-center" data-nav="joystick" >
-                    <div class="JoystickZone">
-                <div class="JoystickMain" id="JoystickMain">
-                    <div class="Joystick" id="Joystick">
-                        <script type="text/javascript">
-                            setInterval(function(argument) {
-                                if (JoystickReady) {
-                                    document.getElementById("log").innerHTML = "X : " + GetJoystick_X() + "  -  Y : " + GetJoystick_Y();
-                                    var jsonToSend = new Object();
-                                    jsonToSend.x = GetJoystick_X();
-                                    jsonToSend.y = GetJoystick_Y();
-                                    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-                                    $.ajax({
-                                        url: '/joys/',
-                                        type: 'POST',
-                                        dataType: 'application/json;charset=UTF-8',
-                                        data: jsonString,
-                                        statusCode: {
-                                            200: function () {
+        <div class="JoystickZone">
+            <div class="JoystickMain" id="JoystickMain">
+                <div class="Joystick" id="Joystick">
+                    <script type="text/javascript">
+                        setInterval(function(argument) {
+                            if (JoystickReady) {
+                                document.getElementById("log").innerHTML = "X : " + GetJoystick_X() + "  -  Y : " + GetJoystick_Y();
+                                var jsonToSend = new Object();
+                                jsonToSend.x = GetJoystick_X();
+                                jsonToSend.y = GetJoystick_Y();
+                                var jsonString = JSON.stringify(jsonToSend, null, '\t');
+                                $.ajax({
+                                    url: '/joys/',
+                                    type: 'POST',
+                                    dataType: 'application/json;charset=UTF-8',
+                                    data: jsonString,
+                                    statusCode: {
+                                        200: function () {
 
-                                                console.log("Success !");
-                                            },
-                                            400: function () {
-                                                console.log("NO joys")
-                                            }
+                                            console.log("Success !");
+                                        },
+                                        400: function () {
+                                            console.log("NO joys")
                                         }
-                                    });
-                                }
-                            },100);
-                        </script>
-                    </div>
+                                    }
+                                });
+                            }
+                        },100);
+                    </script>
                 </div>
             </div>
-            <div id="log">
+        </div>
+        <div id="log">
 
-            </div>
+        </div>
     </div>
 
     <div class="is-hidden" data-nav="automatic" >
