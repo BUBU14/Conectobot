@@ -75,6 +75,7 @@ def back():
     print(post)
     GPIO.output(turnBackPIN, 1)
     time.sleep(10)
+    GPIO.output(turnBackPIN,0)
     return make_response('200')
 
 @app.route('/up/', methods=['POST'])
