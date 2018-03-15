@@ -133,7 +133,7 @@ function sendDown() {
 function sendEndDown() {
 
     var jsonToSend = new Object();
-    jsonToSend.up = 0;
+    jsonToSend.down = 0;
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
     $.ajax({
         url: '/up/',
@@ -194,7 +194,7 @@ function sendLeft() {
 function sendEndLeft() {
 
     var jsonToSend = new Object();
-    jsonToSend.up = 0;
+    jsonToSend.left = 0;
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
     $.ajax({
         url: '/up/',
@@ -255,7 +255,7 @@ function sendRight() {
 function sendEndRight() {
 
     var jsonToSend = new Object();
-    jsonToSend.up = 0;
+    jsonToSend.right = 0;
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
     $.ajax({
         url: '/up/',

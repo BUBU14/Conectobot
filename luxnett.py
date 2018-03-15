@@ -171,9 +171,6 @@ def leftCam():
         return make_response('400')
 
 
-
-
-
 # Route mode auto
 @app.route('/auto/', methods=['POST'])
 def auto():
