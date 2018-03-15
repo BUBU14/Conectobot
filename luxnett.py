@@ -150,7 +150,7 @@ def rightCam():
         GPIO.output(turnRightCamPIN, 1)
         return make_response('200')
     elif post['rightCam'] == 0:
-        print("go right pi cam")
+        print("stop right pi cam")
         GPIO.output(turnRightCamPIN, 0)
         return make_response('200')
     else:
@@ -160,11 +160,11 @@ def rightCam():
 def leftCam():
     post = request.get_json(force=True)
     if post['leftCam'] == 1:
-        print(post['leftCam'])
+        print("go left pi cam")
         GPIO.output(turnLeftCamPIN, 1)
         return make_response('200')
     if post['leftCam'] == 0:
-        print(post['leftCam'])
+        print("stop left pi cam")
         GPIO.output(turnLeftCamPIN, 1)
         return make_response('200')
     else:

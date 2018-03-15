@@ -50,10 +50,10 @@ function sendEndRightCam() {
         data: jsonString,
         statusCode: {
             200: function () {
-                console.log("i stop up!");
+                console.log("i stop right cam!");
             },
             400: function () {
-                console.log("Couldn't stop up");
+                console.log("Couldn't stop right cam");
             }
         }
     });
@@ -111,10 +111,10 @@ function sendEndLeftCam() {
         data: jsonString,
         statusCode: {
             200: function () {
-                console.log("i stop up!");
+                console.log("i stop left cam!");
             },
             400: function () {
-                console.log("Couldn't stop up");
+                console.log("Couldn't stop left cam");
             }
         }
     });
