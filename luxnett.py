@@ -80,12 +80,19 @@ def back():
 @app.route('/up/', methods=['POST'])
 def up():
     post = request.get_json(force=True)
-    print(post['up'])
-    GPIO.output(orderUpPIN, 1)
     if post['up'] == 1:
+        print("go up")
+        GPIO.output(orderUpPIN,1)
+        return make_response('200')
+    elif post['up'] == 0:
+        print("stop up")
+        GPIO.output(orderUpPIN,0)
         return make_response('200')
     else:
         return make_response('400')
+
+
+
 
 @app.route('/down/', methods=['POST'])
 def down():

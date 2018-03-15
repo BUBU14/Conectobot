@@ -44,6 +44,7 @@ function mouseMoveUp() {
         elem.classList.remove("is-success");
         clearInterval(mousedownID);
         mousedownID=-1;
+        sendEndUp();
     }
 }
 
@@ -64,6 +65,27 @@ function sendUp() {
             },
             400: function () {
                 console.log("Couldn't move up");
+            }
+        }
+    });
+}
+
+function sendEndUp() {
+
+    var jsonToSend = new Object();
+    jsonToSend.up = 0;
+    var jsonString = JSON.stringify(jsonToSend, null, '\t');
+    $.ajax({
+        url: '/up/',
+        type: 'POST',
+        dataType: 'application/json;charset=UTF-8',
+        data: jsonString,
+        statusCode: {
+            200: function () {
+                console.log("i stop up!");
+            },
+            400: function () {
+                console.log("Couldn't stop up");
             }
         }
     });

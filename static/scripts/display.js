@@ -2,6 +2,7 @@ function overviewPage()
 {
     $("div[data-nav='automatic']").addClass("is-hidden");
     $("div[data-nav='manuel']").addClass("is-hidden");
+    $("div[data-nav='joystick']").addClass("is-hidden");
 }
 
 function teachPage()
