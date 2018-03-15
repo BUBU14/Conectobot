@@ -188,6 +188,7 @@ def autoS():
     print( "j'ai recu la requete de stop")
     print(post)
     stopAuto()
+    return make_response('200')
 
 
 if __name__ == '__main__':
