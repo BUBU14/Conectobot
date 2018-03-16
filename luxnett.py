@@ -5,6 +5,7 @@ import time
 #App BACK-END
 # 10.30.0.199
 
+
 orderDownPIN = 16
 orderUpPIN = 17
 brushPIN = 18
@@ -14,7 +15,7 @@ orderRightPIN =	22
 turnLeftCamPIN = 23
 turnRightCamPIN	= 24
 turnBackPIN = 25
-
+lightPIN = 26
 
 
 GPIO.setmode(GPIO.BCM)
@@ -63,6 +64,22 @@ def water():
     elif post['state'] == 0:
         print("disable water")
         GPIO.output(waterPIN, 0)
+    else:
+        print("error")
+        return make_response('400')
+    return make_response('200')
+
+
+@app.route('/light/', methods=['POST'])
+def light():
+    post = request.get_json(force=True)
+    print(post['state'])
+    if post['state'] == 1:
+        print("enable light")
+        GPIO.output(lightPIN, 1)
+    elif post['state'] == 0:
+        print("disable light")
+        GPIO.output(lightPIN, 0)
     else:
         print("error")
         return make_response('400')
