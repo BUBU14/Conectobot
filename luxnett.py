@@ -17,7 +17,6 @@ turnRightCamPIN	= 24
 turnBackPIN = 25
 lightPIN = 26
 
-
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(16, GPIO.OUT)

@@ -42,7 +42,7 @@
         <p class="title is-3 is-spaced" align="center">CAMERA</p>
     </div>
     <div align="center">
-        <img src="sourcePicam.jpg" alt="fluxVideo">
+        <img src="{{ url_for('static', filename='templates/sourcePicam.jpg') }}" alt="fluxVideo">
         </br>
         <a title="left" class="button is-outlined elemManual" id="leftCam"  onmousedown="moveLeftCam()" onmouseup="mouseMoveLeftCam()" >
                         <span class="icon">
