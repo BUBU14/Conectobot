@@ -12,8 +12,7 @@ brushPIN = 18
 waterPIN = 19
 orderLeftPIN = 20
 orderRightPIN =	22
-turnLeftCamPIN = 23
-turnRightCamPIN	= 24
+turnCamPIn = 23
 turnBackPIN = 25
 lightPIN = 26
 
@@ -164,11 +163,9 @@ def rightCam():
     post = request.get_json(force=True)
     if post['rightCam'] == 1:
         print("go right pi cam")
-        GPIO.output(turnRightCamPIN, 1)
         return make_response('200')
     elif post['rightCam'] == 0:
         print("stop right pi cam")
-        GPIO.output(turnRightCamPIN, 0)
         return make_response('200')
     else:
         return make_response('400')
@@ -178,11 +175,11 @@ def leftCam():
     post = request.get_json(force=True)
     if post['leftCam'] == 1:
         print("go left pi cam")
-        GPIO.output(turnLeftCamPIN, 1)
+        pwm = GPIO.PWM(turnCamPIn, 100)
+        pwm.start(5)
         return make_response('200')
     if post['leftCam'] == 0:
         print("stop left pi cam")
-        GPIO.output(turnLeftCamPIN, 1)
         return make_response('200')
     else:
         return make_response('400')
