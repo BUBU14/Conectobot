@@ -44,18 +44,9 @@
     <div align="center">
         <img src="{{ url_for('static', filename='camera/sourcePicam.jpg') }}" alt="fluxVideo">
         </br>
-        <a title="left" class="button is-outlined elemManual" id="leftCam"  onmousedown="moveLeftCam()" onmouseup="mouseMoveLeftCam()" >
-                        <span class="icon">
-                            <i class="fa fa-angle-double-left"></i>
-                        </span>
-        </a>
-        <a title="right" class="button is-outlined elemManual" id="rightCam"  onmousedown="moveRightCam()" onmouseup="mouseMoveRightCam()" >
-                        <span class="icon">
-                            <i class="fa fa-angle-double-right"></i>
-                        </span>
-        </a>
+
     </div>
-    <div class="columns is-hidden is-center" data-nav="manuel" >
+    <div class="columns is-hidden is-center" data-nav="manuel">
         <div class="column" align="center">
             <p class="title is-3 is-spaced is-center">ACTION</p>
             <a class="button is-rounded is-warning elemManual" id="water" value="Stop" onclick="statusWater()">Water</a>

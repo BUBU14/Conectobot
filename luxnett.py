@@ -157,34 +157,6 @@ def joys():
     ##### FUNCTION
     return make_response('200')
 
-
-@app.route('/rightCam/', methods=['POST'])
-def rightCam():
-    post = request.get_json(force=True)
-    if post['rightCam'] == 1:
-        print("go right pi cam")
-        return make_response('200')
-    elif post['rightCam'] == 0:
-        print("stop right pi cam")
-        return make_response('200')
-    else:
-        return make_response('400')
-
-@app.route('/leftCam/', methods=['POST'])
-def leftCam():
-    post = request.get_json(force=True)
-    if post['leftCam'] == 1:
-        print("go left pi cam")
-        pwm = GPIO.PWM(turnCamPIn, 100)
-        pwm.start(5)
-        return make_response('200')
-    if post['leftCam'] == 0:
-        print("stop left pi cam")
-        return make_response('200')
-    else:
-        return make_response('400')
-
-
 # Route mode auto
 @app.route('/auto/', methods=['POST'])
 def auto():
