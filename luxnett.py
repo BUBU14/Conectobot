@@ -155,7 +155,7 @@ def down():
         print("go down")
         GPIO.output(motIN1G, 0)
         GPIO.output(motIN2G, 1)
-        GPIO.output(motIN3D, 1)
+        GPIO.output(motIN3D, 0)
         GPIO.output(motIN4D, 0)
         ena.start(maxSpeed)
         enb.start(maxSpeed)
