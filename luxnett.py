@@ -112,8 +112,8 @@ def back():
     post = request.get_json(force=True)
 
     print("turn back")
-    GPIO.output(motIN1G, 0)
-    GPIO.output(motIN2G, 1)
+    GPIO.output(motIN1G, 1)
+    GPIO.output(motIN2G, 0)
     GPIO.output(motIN3D, 0)
     GPIO.output(motIN4D, 1)
     ena.start(maxSpeed)
@@ -153,8 +153,8 @@ def down():
     post = request.get_json(force=True)
     if post['down'] == 1:
         print("go down")
-        GPIO.output(motIN1G, 0)
-        GPIO.output(motIN2G, 1)
+        GPIO.output(motIN1G, 1)
+        GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 0)
         GPIO.output(motIN4D, 1)
         ena.start(maxSpeed)
