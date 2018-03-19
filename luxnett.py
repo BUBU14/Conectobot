@@ -18,8 +18,8 @@ motIN2G = 19
 motIN3D = 26
 motIN4D = 20
 
-maxSpeed = 20
-turnSpeed = maxSpeed/2
+maxSpeed = 100
+turnSpeed = maxSpeed/4
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
