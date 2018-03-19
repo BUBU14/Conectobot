@@ -37,8 +37,8 @@ GPIO.setup(26, GPIO.OUT)
 GPIO.setup(12,GPIO.OUT)
 GPIO.setup(13,GPIO.OUT)
 
-ena = GPIO.PWM(12, 255)
-enb = GPIO.PWM(13, 255)
+ena = GPIO.PWM(12, 100)
+enb = GPIO.PWM(13, 100)
 
 app = Flask(__name__)
 
@@ -120,8 +120,8 @@ def up():
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 1)
         GPIO.output(motIN4D, 0)
-        ena.start(255)
-        enb.start(255)
+        ena.start(100)
+        enb.start(100)
         return make_response('200')
     elif post['up'] == 0:
         print("stop up")
@@ -142,8 +142,8 @@ def down():
         GPIO.output(motIN2G, 1)
         GPIO.output(motIN3D, 0)
         GPIO.output(motIN4D, 1)
-        ena.start(255)
-        enb.start(255)
+        ena.start(100)
+        enb.start(100)
         return make_response('200')
     elif post['down'] == 0:
         print("stop down")
@@ -164,8 +164,8 @@ def left():
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 1)
         GPIO.output(motIN4D, 0)
-        ena.start(128)
-        enb.start(255)
+        ena.start(50)
+        enb.start(100)
         return make_response('200')
     elif post['left'] == 0:
         print("stop left")
