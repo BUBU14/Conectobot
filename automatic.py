@@ -30,6 +30,10 @@ def start():
     capteurH = 0
     while(finish != 1):
         while (capteurH ==0) :
+            GPIO.output(motIN1G, 1)
+            GPIO.output(motIN2G, 0)
+            GPIO.output(motIN3D, 1)
+            GPIO.output(motIN4D, 0)
             if capteurH:
                 moveInfo = changeDirection(moveInfo)
     return 1
