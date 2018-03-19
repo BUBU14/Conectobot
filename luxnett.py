@@ -20,12 +20,16 @@ motIN4D = 20
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
-GPIO.setup(16, GPIO.OUT)
+
 GPIO.setup(18, GPIO.OUT)
-GPIO.setup(19, GPIO.OUT)
-GPIO.setup(20, GPIO.OUT)
+
 GPIO.setup(23, GPIO.OUT)
 GPIO.setup(24, GPIO.OUT)
+
+GPIO.setup(16, GPIO.OUT)
+GPIO.setup(19, GPIO.OUT)
+
+GPIO.setup(20, GPIO.OUT)
 GPIO.setup(26, GPIO.OUT)
 
 
