@@ -11,12 +11,15 @@ lightPIN = 18
 brushPIN = 23
 waterPIN = 24
 
-motENA = 12
-motENB = 13
+
 motIN1G = 16
 motIN2G = 19
+
 motIN3D = 26
 motIN4D = 20
+
+motENA = 12
+motENB = 13
 
 maxSpeed = 100
 turnSpeed = maxSpeed/4
@@ -109,8 +112,8 @@ def back():
     post = request.get_json(force=True)
 
     print("turn back")
-    GPIO.output(motIN1G, 1)
-    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN1G, 0)
+    GPIO.output(motIN2G, 1)
     GPIO.output(motIN3D, 0)
     GPIO.output(motIN4D, 1)
     ena.start(maxSpeed)
