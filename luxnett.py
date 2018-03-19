@@ -11,6 +11,8 @@ lightPIN = 18
 brushPIN = 23
 waterPIN = 24
 
+motENA = 12
+motENB = 13
 motIN1G = 16
 motIN2G = 19
 motIN3D = 26
@@ -32,6 +34,11 @@ GPIO.setup(19, GPIO.OUT)
 GPIO.setup(20, GPIO.OUT)
 GPIO.setup(26, GPIO.OUT)
 
+GPIO.setup(12,GPIO.OUT)
+GPIO.setup(13,GPIO.OUT)
+
+ena = GPIO.PWM(12, 255)
+enb = GPIO.PWM(13, 255)
 
 app = Flask(__name__)
 
@@ -103,6 +110,7 @@ def back():
     GPIO.output(motIN4D,0)
     return make_response('200')
 
+
 @app.route('/up/', methods=['POST'])
 def up():
     post = request.get_json(force=True)
@@ -112,11 +120,15 @@ def up():
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 1)
         GPIO.output(motIN4D, 0)
+        ena.start(255)
+        enb.start(255)
         return make_response('200')
     elif post['up'] == 0:
         print("stop up")
         GPIO.output(motIN1G, 0)
         GPIO.output(motIN3D, 0)
+        ena.stop()
+        enb.stop()
         return make_response('200')
     else:
         return make_response('400')
@@ -130,11 +142,15 @@ def down():
         GPIO.output(motIN2G, 1)
         GPIO.output(motIN3D, 0)
         GPIO.output(motIN4D, 1)
+        ena.start(255)
+        enb.start(255)
         return make_response('200')
     elif post['down'] == 0:
         print("stop down")
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN4D, 0)
+        ena.stop()
+        enb.stop()
         return make_response('200')
     else:
         return make_response('400')
@@ -144,12 +160,19 @@ def left():
     post = request.get_json(force=True)
     if post['left'] == 1:
         print("go left")
+        GPIO.output(motIN1G, 1)
+        GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 1)
         GPIO.output(motIN4D, 0)
+        ena.start(128)
+        enb.start(255)
         return make_response('200')
     elif post['left'] == 0:
         print("stop left")
+        GPIO.output(motIN1G, 0)
         GPIO.output(motIN3D, 0)
+        ena.stop()
+        enb.stop()
         return make_response('200')
     else:
         return make_response('400')
@@ -162,10 +185,17 @@ def right():
         print("go right")
         GPIO.output(motIN1G, 1)
         GPIO.output(motIN2G, 0)
+        GPIO.output(motIN3D, 1)
+        GPIO.output(motIN4D, 0)
+        ena.start(255)
+        enb.start(128)
         return make_response('200')
     elif post['right'] == 0:
         print("stop right")
         GPIO.output(motIN1G, 0)
+        GPIO.output(motIN3D, 0)
+        ena.stop()
+        enb.stop()
         return make_response('200')
     else:
         return make_response('400')
