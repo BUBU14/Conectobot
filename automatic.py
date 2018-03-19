@@ -23,6 +23,7 @@ async def mainAuto(width,height,speed):
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
     calculDuration(width,height,speed)
     status = start()
+    await asyncio.sleep(1)
     return status
 
 def start():

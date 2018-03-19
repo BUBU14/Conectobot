@@ -145,3 +145,24 @@ function statusLight() {
         }
     });
 }
+
+function clean(){
+                    var jsonToSend = new Object();
+                    jsonToSend.clean = 1
+                    var jsonString = JSON.stringify(jsonToSend, null, '\t');
+                    $.ajax({
+                        url: '/clean/',
+                        type: 'POST',
+                        dataType: 'application/json;charset=UTF-8',
+                        data: jsonString,
+                        statusCode: {
+                            200: function () {
+
+                                console.log("clean !");
+                            },
+                            400: function () {
+                                console.log("NO clean")
+                            }
+                        }
+                    });
+                }

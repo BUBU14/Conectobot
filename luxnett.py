@@ -96,12 +96,19 @@ def light():
         return make_response('400')
     return make_response('200')
 
+@app.route('/clean/', methods=['POST'])
+def clean():
+    post = request.get_json(force=True)
+    print("clean GPIO")
+    GPIO.cleanup()
+    return make_response('200')
+
 
 @app.route('/back/', methods=['POST'])
 def back():
     post = request.get_json(force=True)
 
-    print(post)
+    print("turn back")
     GPIO.output(motIN1G, 1)
     GPIO.output(motIN2G, 0)
     GPIO.output(motIN3D, 0)
@@ -121,10 +128,10 @@ def up():
     post = request.get_json(force=True)
     if post['up'] == 1:
         print("go up")
-        GPIO.output(motIN1G, 0)
-        GPIO.output(motIN2G, 1)
-        GPIO.output(motIN3D, 0)
-        GPIO.output(motIN4D, 1)
+        GPIO.output(motIN1G, 1)
+        GPIO.output(motIN2G, 0)
+        GPIO.output(motIN3D, 1)
+        GPIO.output(motIN4D, 0)
         ena.start(maxSpeed)
         enb.start(maxSpeed)
         return make_response('200')

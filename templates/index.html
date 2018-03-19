@@ -50,7 +50,7 @@
             <p class="title is-3 is-spaced is-center">ACTION</p>
             <a class="button is-rounded is-warning elemManual" id="water" value="Stop" onclick="statusWater()">Water</a>
             <a class="button is-rounded is-warning elemManual" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
-             <a class="button is-rounded is-warning elemManual" id="light" value="Stop" onclick="statusLight()">Light</a>
+            <a class="button is-rounded is-warning elemManual" id="light" value="Stop" onclick="statusLight()">Light</a>
         </div>
         <div class="column" align="center">
             <p class="title is-3 is-spaced is-center">ORDER</p>
@@ -79,16 +79,21 @@
             </br>
             </br>
             <a class="button is-rounded is-warning elemManual" id="back" onclick="statusBack()">Turn back</a>
-        </div>
+            </br>
 
+
+        </div>
+        <div>
+            <a class="button is-rounded is-success elemManual" id="clean" onclick="clean()">clean</a>
+        </div>
         </br>
     </div>
     <div class=" is-hidden" align="center" data-nav="joystick" >
 
-            <p class="title is-3 is-spaced is-center">JOYSTICK</p>
-            <a class=" button  is-rounded is-success" id="loadJ" onclick="LoadJoystick()">Load Joystick</a>
-            <a class=" button  is-rounded is-danger" id="stopJ" onclick="stopJoystick()">Stop Joystick</a>
-            </br>
+        <p class="title is-3 is-spaced is-center">JOYSTICK</p>
+        <a class=" button  is-rounded is-success" id="loadJ" onclick="LoadJoystick()">Load Joystick</a>
+        <a class=" button  is-rounded is-danger" id="stopJ" onclick="stopJoystick()">Stop Joystick</a>
+        </br>
 
         <div class="JoystickZone is-center">
             <div class="JoystickMain" id="JoystickMain">
