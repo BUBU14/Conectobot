@@ -131,7 +131,7 @@ def down():
         GPIO.output(motIN3D, 0)
         GPIO.output(motIN4D, 1)
         return make_response('200')
-    elif post['down'] == 1:
+    elif post['down'] == 0:
         print("stop down")
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN4D, 0)
