@@ -47,10 +47,17 @@
     </div>
     <div class="columns is-hidden is-center" data-nav="manuel">
         <div class="column" align="center">
-            <p class="title is-3 is-spaced is-center">ACTION</p>
-            <a class="button is-rounded is-warning elemManual" id="water" value="Stop" onclick="statusWater()">Water</a>
-            <a class="button is-rounded is-warning elemManual" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
-            <a class="button is-rounded is-warning elemManual" id="light" value="Stop" onclick="statusLight()">Light</a>
+            <div class="ul">
+              <div class="li">
+                <p class="title is-3 is-spaced is-center">ACTION</p>
+                <a class="button is-rounded is-warning elemManual" id="water" value="Stop" onclick="statusWater()">Water</a>
+                <a class="button is-rounded is-warning elemManual" id="brush" value="Stop" onclick="statusBrush()">Brush</a>
+                <a class="button is-rounded is-warning elemManual" id="light" value="Stop" onclick="statusLight()">Light</a>
+              </div>
+                <div class="li">
+                <a class="button is-rounded is-success elemManual" id="clean" onclick="clean()">clean</a>
+              </div>
+            </div>
         </div>
         <div class="column" align="center">
             <p class="title is-3 is-spaced is-center">ORDER</p>
@@ -82,9 +89,6 @@
             </br>
 
 
-        </div>
-        <div>
-            <a class="button is-rounded is-success elemManual" id="clean" onclick="clean()">clean</a>
         </div>
         </br>
     </div>
