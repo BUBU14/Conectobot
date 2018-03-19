@@ -136,7 +136,7 @@ function sendEndDown() {
     jsonToSend.down = 0;
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
     $.ajax({
-        url: '/up/',
+        url: '/down/',
         type: 'POST',
         dataType: 'application/json;charset=UTF-8',
         data: jsonString,
@@ -197,7 +197,7 @@ function sendEndLeft() {
     jsonToSend.left = 0;
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
     $.ajax({
-        url: '/up/',
+        url: '/left/',
         type: 'POST',
         dataType: 'application/json;charset=UTF-8',
         data: jsonString,
@@ -258,7 +258,7 @@ function sendEndRight() {
     jsonToSend.right = 0;
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
     $.ajax({
-        url: '/up/',
+        url: '/right/',
         type: 'POST',
         dataType: 'application/json;charset=UTF-8',
         data: jsonString,
