@@ -6,28 +6,28 @@ import time
 # 10.30.0.199
 
 
-orderDownPIN = 16
-orderUpPIN = 17
-brushPIN = 18
-waterPIN = 19
-orderLeftPIN = 20
-orderRightPIN =	22
-turnCamPIn = 23
-turnBackPIN = 25
-lightPIN = 26
+lightPIN = 18
+
+brushPIN = 23
+waterPIN = 24
+
+motIN1G = 16
+motIN2G = 19
+motIN3D = 26
+motIN4D = 20
+
+
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(16, GPIO.OUT)
-GPIO.setup(17, GPIO.OUT)
 GPIO.setup(18, GPIO.OUT)
 GPIO.setup(19, GPIO.OUT)
 GPIO.setup(20, GPIO.OUT)
-GPIO.setup(22, GPIO.OUT)
 GPIO.setup(23, GPIO.OUT)
 GPIO.setup(24, GPIO.OUT)
-GPIO.setup(25, GPIO.OUT)
 GPIO.setup(26, GPIO.OUT)
+
 
 app = Flask(__name__)
 
@@ -84,14 +84,19 @@ def light():
         return make_response('400')
     return make_response('200')
 
+
 @app.route('/back/', methods=['POST'])
 def back():
     post = request.get_json(force=True)
 
     print(post)
-    GPIO.output(turnBackPIN, 1)
+    GPIO.output(motIN1G, 1)
+    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN3D, 0)
+    GPIO.output(motIN4D, 1)
     time.sleep(10)
-    GPIO.output(turnBackPIN,0)
+    GPIO.output(motIN1G,0)
+    GPIO.output(motIN4D,0)
     return make_response('200')
 
 @app.route('/up/', methods=['POST'])
@@ -99,11 +104,15 @@ def up():
     post = request.get_json(force=True)
     if post['up'] == 1:
         print("go up")
-        GPIO.output(orderUpPIN,1)
+        GPIO.output(motIN1G, 1)
+        GPIO.output(motIN2G, 0)
+        GPIO.output(motIN3D, 1)
+        GPIO.output(motIN4D, 0)
         return make_response('200')
     elif post['up'] == 0:
         print("stop up")
-        GPIO.output(orderUpPIN,0)
+        GPIO.output(motIN1G, 0)
+        GPIO.output(motIN3D, 0)
         return make_response('200')
     else:
         return make_response('400')
@@ -113,10 +122,14 @@ def down():
     post = request.get_json(force=True)
     if post['down'] == 1:
         print("go down")
-        GPIO.output(orderDownPIN, 1)
+        GPIO.output(motIN1G, 0)
+        GPIO.output(motIN2G, 1)
+        GPIO.output(motIN3D, 0)
+        GPIO.output(motIN4D, 1)
     elif post['down'] == 1:
         print("stop down")
-        GPIO.output(orderDownPIN, 0)
+        GPIO.output(motIN2G, 0)
+        GPIO.output(motIN4D, 0)
         return make_response('200')
     else:
         return make_response('400')
@@ -126,11 +139,12 @@ def left():
     post = request.get_json(force=True)
     if post['left'] == 1:
         print("go left")
-        GPIO.output(orderLeftPIN, 1)
+        GPIO.output(motIN3D, 1)
+        GPIO.output(motIN4D, 0)
         return make_response('200')
     elif post['left'] == 0:
         print("stop left")
-        GPIO.output(orderLeftPIN, 0)
+        GPIO.output(motIN3D, 0)
         return make_response('200')
     else:
         return make_response('400')
@@ -141,11 +155,12 @@ def right():
 
     if post['right'] == 1:
         print("go right")
-        GPIO.output(orderRightPIN, 1)
+        GPIO.output(motIN1G, 1)
+        GPIO.output(motIN2G, 0)
         return make_response('200')
     elif post['right'] == 0:
         print("stop right")
-        GPIO.output(orderRightPIN, 0)
+        GPIO.output(motIN1G, 0)
         return make_response('200')
     else:
         return make_response('400')
@@ -161,8 +176,8 @@ def joys():
 @app.route('/auto/', methods=['POST'])
 def auto():
     post = request.get_json(force=True)
-    status = mainAuto(post['width'] ,post['height'], post['speed'])
 
+    status = mainAuto(post['width'] ,post['height'], post['speed'])
     if status ==1:
         return make_response('200')
     else :

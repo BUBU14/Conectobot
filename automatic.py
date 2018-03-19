@@ -1,24 +1,24 @@
 import RPi.GPIO as GPIO
 import time
+import asyncio
 
-orderDownPIN = 16
-orderUpPIN = 17
-orderLeftPIN = 20
-orderRightPIN =	22
-turnBackPIN = 25
+motIN1G = 16
+motIN2G = 19
+motIN3D = 26
+motIN4D = 20
+
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
 GPIO.setup(16, GPIO.OUT)
-GPIO.setup(17, GPIO.OUT)
+GPIO.setup(19, GPIO.OUT)
 GPIO.setup(20, GPIO.OUT)
-GPIO.setup(22, GPIO.OUT)
-GPIO.setup(25, GPIO.OUT)
+GPIO.setup(26, GPIO.OUT)
 
 
 finish = 0
 
-def mainAuto(width,height,speed):
+async def mainAuto(width,height,speed):
     print("i'm start auto")
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
     calculDuration(width,height,speed)
@@ -30,9 +30,8 @@ def start():
     capteurH = 0
     while(finish != 1):
         while (capteurH ==0) :
-            GPIO.output(orderUpPIN, 1)
-        if capteurH:
-            moveInfo = changeDirection(moveInfo)
+            if capteurH:
+                moveInfo = changeDirection(moveInfo)
     return 1
 
 def changeDirection(moveInfo):
@@ -53,10 +52,8 @@ def offset():
 def rotation(direction):
     print("turn " + str(direction) )
     if direction == "R":
-        GPIO.output(orderRightPIN, 1)
         time.sleep(2)
     if direction == "L":
-        GPIO.output(orderLeftPIN, 1)
         time.sleep(2)
     time.sleep(2)
 
