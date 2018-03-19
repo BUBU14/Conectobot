@@ -106,9 +106,13 @@ def back():
     GPIO.output(motIN2G, 0)
     GPIO.output(motIN3D, 0)
     GPIO.output(motIN4D, 1)
+    ena.start(maxSpeed)
+    enb.start(maxSpeed)
     time.sleep(10)
     GPIO.output(motIN1G,0)
     GPIO.output(motIN4D,0)
+    ena.stop()
+    enb.stop()
     return make_response('200')
 
 
