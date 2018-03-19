@@ -187,8 +187,8 @@ def right():
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 1)
         GPIO.output(motIN4D, 0)
-        ena.start(255)
-        enb.start(128)
+        ena.start(100)
+        enb.start(50)
         return make_response('200')
     elif post['right'] == 0:
         print("stop right")
