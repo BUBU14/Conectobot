@@ -120,8 +120,8 @@ def up():
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 1)
         GPIO.output(motIN4D, 0)
-        ena.start(1)
-        enb.start(1)
+        ena.start(20)
+        enb.start(20)
         return make_response('200')
     elif post['up'] == 0:
         print("stop up")
