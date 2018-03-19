@@ -18,7 +18,8 @@ motIN2G = 19
 motIN3D = 26
 motIN4D = 20
 
-
+maxSpeed = 20
+turnSpeed = maxSpeed/2
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
@@ -120,8 +121,8 @@ def up():
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 1)
         GPIO.output(motIN4D, 0)
-        ena.start(20)
-        enb.start(20)
+        ena.start(maxSpeed)
+        enb.start(maxSpeed)
         return make_response('200')
     elif post['up'] == 0:
         print("stop up")
@@ -142,8 +143,8 @@ def down():
         GPIO.output(motIN2G, 1)
         GPIO.output(motIN3D, 0)
         GPIO.output(motIN4D, 1)
-        ena.start(100)
-        enb.start(100)
+        ena.start(maxSpeed)
+        enb.start(maxSpeed)
         return make_response('200')
     elif post['down'] == 0:
         print("stop down")
@@ -164,8 +165,8 @@ def left():
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 1)
         GPIO.output(motIN4D, 0)
-        ena.start(50)
-        enb.start(100)
+        ena.start(turnSpeed)
+        enb.start(maxSpeed)
         return make_response('200')
     elif post['left'] == 0:
         print("stop left")
@@ -187,8 +188,8 @@ def right():
         GPIO.output(motIN2G, 0)
         GPIO.output(motIN3D, 1)
         GPIO.output(motIN4D, 0)
-        ena.start(100)
-        enb.start(50)
+        ena.start(maxSpeed)
+        enb.start(turnSpeed)
         return make_response('200')
     elif post['right'] == 0:
         print("stop right")
