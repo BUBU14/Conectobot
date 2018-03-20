@@ -25,8 +25,9 @@ def start(speed):
             GPIO.output(pinmode.motIN4D, 0)
             pinmode.ena.start(speed)
             pinmode.enb.start(speed)
-        if capteurH:
-            moveInfo = changeDirection(moveInfo)
+            time.sleep(5)
+            capteurH = 1
+            finish = 1
     print("end programm")
 
 
