@@ -142,10 +142,10 @@ function sendEndDown() {
         data: jsonString,
         statusCode: {
             200: function () {
-                console.log("i stop up!");
+                console.log("i stop down!");
             },
             400: function () {
-                console.log("Couldn't stop up");
+                console.log("Couldn't stop down");
             }
         }
     });
@@ -203,10 +203,10 @@ function sendEndLeft() {
         data: jsonString,
         statusCode: {
             200: function () {
-                console.log("i stop up!");
+                console.log("i stop left!");
             },
             400: function () {
-                console.log("Couldn't stop up");
+                console.log("Couldn't stop left");
             }
         }
     });
@@ -264,10 +264,10 @@ function sendEndRight() {
         data: jsonString,
         statusCode: {
             200: function () {
-                console.log("i stop up!");
+                console.log("i stop right!");
             },
             400: function () {
-                console.log("Couldn't stop up");
+                console.log("Couldn't stop right");
             }
         }
     });
