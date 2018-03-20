@@ -21,6 +21,7 @@ def brush():
     print(post['state'])
     if post['state'] == 1:
         print("enable water")
+        print(pinmode.waterPIN)
         GPIO.output(pinmode.waterPIN,1)
     elif post['state'] == 0:
         print("disable water")
