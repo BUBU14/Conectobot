@@ -25,7 +25,6 @@ GPIO.setup(13, GPIO.OUT)
 ena = GPIO.PWM(12, 100)
 enb = GPIO.PWM(13, 100)
 
-
 lightPIN = 18
 
 brushAPIN = 23
@@ -45,6 +44,13 @@ motENB = 13
 maxSpeed = 100
 turnSpeed = 70
 
+def stopRun():
+    GPIO.output(motIN1G, 0)
+    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN3D, 0)
+    GPIO.output(motIN4D, 0)
+    ena.stop()
+    enb.stop()
 
 def straightAhead():
     GPIO.output(motIN1G, 1)
@@ -53,14 +59,6 @@ def straightAhead():
     GPIO.output(motIN4D, 0)
     ena.start(maxSpeed)
     enb.start(maxSpeed)
-
-def stopRun():
-    GPIO.output(motIN1G, 0)
-    GPIO.output(motIN2G, 0)
-    GPIO.output(motIN3D, 0)
-    GPIO.output(motIN4D, 0)
-    ena.stop()
-    enb.stop()
 
 def retreat():
     GPIO.output(motIN1G, 0)
@@ -85,7 +83,6 @@ def goRight():
     GPIO.output(motIN4D, 0)
     ena.start(maxSpeed)
     enb.start(turnSpeed)
-
 
 def turnBack():
     GPIO.output(motIN1G, 1)
