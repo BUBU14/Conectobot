@@ -2,17 +2,14 @@ import time
 import raspi as pinmode
 import RPi.GPIO as GPIO
 
-
 finish = 0
-
-
 
 async def mainAuto(width,height,speed):
     print("i'm start auto")
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
     calculDuration(width,height,speed)
-    start(float(speed))
-    print("fin du programme")
+    await start(float(speed))
+
 
 
 def start(speed):
@@ -20,7 +17,6 @@ def start(speed):
     capteurH = 0
     while(finish != 1):
         while (capteurH ==0) :
-            print("lets'go boy")
             GPIO.output(pinmode.motIN1G, 1)
             GPIO.output(pinmode.motIN2G, 0)
             GPIO.output(pinmode.motIN3D, 1)
@@ -29,6 +25,7 @@ def start(speed):
             pinmode.enb.start(speed)
         if capteurH:
             moveInfo = changeDirection(moveInfo)
+    print("end programm")
 
 
 def changeDirection(moveInfo):
