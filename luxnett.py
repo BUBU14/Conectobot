@@ -22,7 +22,7 @@ motENA = 12
 motENB = 13
 
 maxSpeed = 100
-turnSpeed = maxSpeed/2
+turnSpeed = 70
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
