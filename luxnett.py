@@ -199,6 +199,7 @@ def joys():
 def auto():
     post = request.get_json(force=True)
     mainAuto(post['width'] ,post['height'], post['speed'])
+    return make_response('200')
 
 
 @app.route('/autoS/', methods=['POST'])

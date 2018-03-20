@@ -57,7 +57,12 @@ function runAuto()
             type: 'POST',
             dataType: 'application/json;charset=UTF-8',
             data: jsonString,
-            timeout: 10
+            timeout: 10,
+            statusCode: {
+                200: function () {
+                    console.log("program start !");
+                }
+            }
         });
     }
 }
