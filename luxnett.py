@@ -8,9 +8,10 @@ import time
 
 lightPIN = 18
 
-brushPIN = 23
-waterPIN = 24
+brushAPIN = 23
+brushBPIN = 24
 
+waterPIN = 22
 
 motIN1G = 16
 motIN2G = 19
@@ -52,37 +53,51 @@ def hello_world():
     return render_template('index.html')
 
 # Route mode manuel
-@app.route('/brush/', methods=['POST'])
+@app.route('/water/', methods=['POST'])
 def brush():
     post = request.get_json(force=True)
     print(post['state'])
     if post['state'] == 1:
-        print("enable brush")
-        GPIO.output(brushPIN,1)
+        print("enable water")
+        GPIO.output(waterPIN,1)
     elif post['state'] == 0:
-        print("disable brush")
-        GPIO.output(brushPIN,0)
+        print("disable water")
+        GPIO.output(waterPIN,0)
     else:
         print("error")
         return make_response('400')
     return make_response('200')
 
 
-@app.route('/water/', methods=['POST'])
-def water():
+@app.route('/brushA/', methods=['POST'])
+def waterA():
     post = request.get_json(force=True)
     print(post['state'])
     if post['state'] == 1:
-        print("enable water")
-        GPIO.output(waterPIN, 1)
+        print("enable brushA")
+        GPIO.output(brushAPIN, 1)
     elif post['state'] == 0:
-        print("disable water")
-        GPIO.output(waterPIN, 0)
+        print("disable brushA")
+        GPIO.output(brushAPIN, 0)
     else:
         print("error")
         return make_response('400')
     return make_response('200')
 
+@app.route('/brushB/', methods=['POST'])
+def waterB():
+    post = request.get_json(force=True)
+    print(post['state'])
+    if post['state'] == 1:
+        print("enable brushB")
+        GPIO.output(brushBPIN, 1)
+    elif post['state'] == 0:
+        print("disable brushB")
+        GPIO.output(brushBPIN, 0)
+    else:
+        print("error")
+        return make_response('400')
+    return make_response('200')
 
 @app.route('/light/', methods=['POST'])
 def light():
@@ -238,6 +253,9 @@ def autoS():
     post = request.get_json(force=True)
     print( "j'ai recu la requete de stop")
     print(post)
+    ena.stop()
+    enb.stop()
+    GPIO.cleanup()
     stopAuto()
     return make_response('200')
 
