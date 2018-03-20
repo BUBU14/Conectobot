@@ -1,11 +1,13 @@
 import time
-
+import asyncio
 import raspi as pinmode
 import RPi.GPIO as GPIO
 
 
 finish = 0
 
+
+@asyncio.coroutine
 def mainAuto(width,height,speed):
     print("i'm start auto")
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
