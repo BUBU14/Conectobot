@@ -3,6 +3,8 @@ import RPi.GPIO as GPIO
 
 
 def setup():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
     GPIO.setup(18, GPIO.OUT)
     GPIO.setup(23, GPIO.OUT)
     GPIO.setup(24, GPIO.OUT)
