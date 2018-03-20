@@ -21,7 +21,7 @@ def start(speed):
         pinmode.ena.start(speed)
         pinmode.enb.start(speed)
         time.sleep(10)
-        pinmode.finish = 0
+        pinmode.finish = 1
     print("end programm")
 
 
