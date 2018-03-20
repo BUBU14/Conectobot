@@ -1,6 +1,6 @@
 import RPi.GPIO as GPIO
 
-
+finish = 0
 
 def setup():
     GPIO.setmode(GPIO.BCM)

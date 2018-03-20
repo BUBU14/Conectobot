@@ -2,9 +2,6 @@ import time
 import raspi as pinmode
 import RPi.GPIO as GPIO
 
-
-finish = 0
-
 pinmode.setup()
 
 def mainAuto(width,height,speed):
@@ -16,18 +13,15 @@ def mainAuto(width,height,speed):
 def start(speed):
     moveInfo = "LR"
     capteurH = 0
-    while(finish != 1):
-        while (capteurH ==0):
-            print("let's go body")
-            GPIO.output(pinmode.motIN1G, 1)
-            GPIO.output(pinmode.motIN2G, 0)
-            GPIO.output(pinmode.motIN3D, 1)
-            GPIO.output(pinmode.motIN4D, 0)
-            pinmode.ena.start(speed)
-            pinmode.enb.start(speed)
-            time.sleep(5)
-            capteurH = 1
-            finish = 1
+    while(pinmode.finish != 1):
+        GPIO.output(pinmode.motIN1G, 1)
+        GPIO.output(pinmode.motIN2G, 0)
+        GPIO.output(pinmode.motIN3D, 1)
+        GPIO.output(pinmode.motIN4D, 0)
+        pinmode.ena.start(speed)
+        pinmode.enb.start(speed)
+        time.sleep(10)
+        pinmode.finish = 0
     print("end programm")
 
 
@@ -60,4 +54,4 @@ def calculDuration(width, height,speed):
 
 def stopAuto():
     print("i want to kill programm")
-    finish = 1
+    pinmode.finish = 1
