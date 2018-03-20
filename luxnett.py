@@ -33,6 +33,8 @@ GPIO.setup(18, GPIO.OUT)
 GPIO.setup(23, GPIO.OUT)
 GPIO.setup(24, GPIO.OUT)
 
+GPIO.setup(22, GPIO.OUT)
+
 GPIO.setup(16, GPIO.OUT)
 GPIO.setup(19, GPIO.OUT)
 
@@ -125,7 +127,6 @@ def clean():
 @app.route('/back/', methods=['POST'])
 def back():
     post = request.get_json(force=True)
-
     print("turn back")
     GPIO.output(motIN1G, 1)
     GPIO.output(motIN2G, 0)
@@ -210,7 +211,6 @@ def left():
 @app.route('/right/', methods=['POST'])
 def right():
     post = request.get_json(force=True)
-
     if post['right'] == 1:
         print("go right")
         GPIO.output(motIN1G, 1)
