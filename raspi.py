@@ -1,5 +1,7 @@
 import RPi.GPIO as GPIO
 
+GPIO.setmode(GPIO.BCM)
+
 lightPIN = 18
 
 brushAPIN = 23
@@ -23,7 +25,7 @@ ena = GPIO.PWM(12, 100)
 enb = GPIO.PWM(13, 100)
 
 def setup():
-    GPIO.setmode(GPIO.BCM)
+
     GPIO.setwarnings(False)
     GPIO.setup(18, GPIO.OUT)
     GPIO.setup(23, GPIO.OUT)
