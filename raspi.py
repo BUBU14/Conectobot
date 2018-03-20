@@ -62,10 +62,35 @@ def stopRun():
     ena.stop()
     enb.stop()
 
+def retreat():
+    GPIO.output(motIN1G, 0)
+    GPIO.output(motIN2G, 1)
+    GPIO.output(motIN3D, 0)
+    GPIO.output(motIN4D, 1)
+    ena.start(maxSpeed)
+    enb.start(maxSpeed)
+
+def goLeft():
+    GPIO.output(motIN1G, 1)
+    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN3D, 1)
+    GPIO.output(motIN4D, 0)
+    ena.start(turnSpeed)
+    enb.start(maxSpeed)
+
+def goRight():
+    GPIO.output(motIN1G, 1)
+    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN3D, 1)
+    GPIO.output(motIN4D, 0)
+    ena.start(maxSpeed)
+    enb.start(turnSpeed)
 
 
-
-
-
-
-
+def turnBack():
+    GPIO.output(motIN1G, 1)
+    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN3D, 0)
+    GPIO.output(motIN4D, 1)
+    ena.start(maxSpeed)
+    enb.start(maxSpeed)
