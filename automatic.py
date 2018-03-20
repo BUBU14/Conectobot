@@ -4,7 +4,7 @@ import RPi.GPIO as GPIO
 
 finish = 0
 
-async def mainAuto(width,height,speed):
+def mainAuto(width,height,speed):
     print("i'm start auto")
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
     calculDuration(width,height,speed)
