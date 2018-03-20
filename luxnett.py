@@ -7,9 +7,9 @@ import asyncio
 #App BACK-END
 # 10.30.0.199
 
-pinmode.setup()
-
 app = Flask(__name__)
+
+pinmode.setup()
 
 # Route pour l'index.html
 @app.route('/')

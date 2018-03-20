@@ -1,11 +1,8 @@
 import RPi.GPIO as GPIO
 
-ena = 0
-enb = 0
+
 
 def setup():
-    GPIO.setmode(GPIO.BCM)
-    GPIO.setwarnings(False)
     GPIO.setup(18, GPIO.OUT)
     GPIO.setup(23, GPIO.OUT)
     GPIO.setup(24, GPIO.OUT)
@@ -18,6 +15,14 @@ def setup():
     GPIO.setup(13, GPIO.OUT)
     ena = GPIO.PWM(12, 100)
     enb = GPIO.PWM(13, 100)
+
+GPIO.setmode(GPIO.BCM)
+GPIO.setwarnings(False)
+GPIO.setup(12, GPIO.OUT)
+GPIO.setup(13, GPIO.OUT)
+ena = GPIO.PWM(12, 100)
+enb = GPIO.PWM(13, 100)
+
 
 lightPIN = 18
 
