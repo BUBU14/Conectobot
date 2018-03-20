@@ -203,7 +203,8 @@ def joys():
 @app.route('/auto/', methods=['POST'])
 def auto():
     post = request.get_json(force=True)
-    mainAuto(post['width'] ,post['height'], post['speed'])
+    status =mainAuto(post['width'] ,post['height'], post['speed'])
+    print(status)
     return make_response('200')
 
 
