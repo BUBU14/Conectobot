@@ -6,7 +6,6 @@ import time
 #App BACK-END
 # 10.30.0.199
 
-pinmode.setup()
 
 app = Flask(__name__)
 

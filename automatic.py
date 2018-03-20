@@ -3,7 +3,6 @@ import asyncio
 import raspi as pinmode
 import RPi.GPIO as GPIO
 
-pinmode.setup()
 finish = 0
 
 def mainAuto(width,height,speed):
