@@ -112,19 +112,11 @@ def up():
     post = request.get_json(force=True)
     if post['up'] == 1:
         print("go up")
-        GPIO.output(pinmode.motIN1G, 1)
-        GPIO.output(pinmode.motIN2G, 0)
-        GPIO.output(pinmode.motIN3D, 1)
-        GPIO.output(pinmode.motIN4D, 0)
-        pinmode.ena.start(pinmode.maxSpeed)
-        pinmode.enb.start(pinmode.maxSpeed)
+        pinmode.straightAhead()
         return make_response('200')
     elif post['up'] == 0:
         print("stop up")
-        GPIO.output(pinmode.motIN1G, 0)
-        GPIO.output(pinmode.motIN3D, 0)
-        pinmode.ena.stop()
-        pinmode.enb.stop()
+        pinmode.stopRun()
         return make_response('200')
     else:
         return make_response('400')

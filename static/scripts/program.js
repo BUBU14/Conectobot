@@ -56,7 +56,8 @@ function runAuto()
             url: '/auto/',
             type: 'POST',
             dataType: 'application/json;charset=UTF-8',
-            data: jsonString
+            data: jsonString,
+            timeout: 10
         });
     }
 }
@@ -78,7 +79,6 @@ function stopAuto()
                 200: function () {
                     console.log("program finish with no error !");
                 }
-
             }
         });
 }

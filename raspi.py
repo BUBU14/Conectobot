@@ -46,3 +46,26 @@ maxSpeed = 100
 turnSpeed = 70
 
 
+def straightAhead():
+    GPIO.output(motIN1G, 1)
+    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN3D, 1)
+    GPIO.output(motIN4D, 0)
+    ena.start(maxSpeed)
+    enb.start(maxSpeed)
+
+def stopRun():
+    GPIO.output(motIN1G, 0)
+    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN3D, 0)
+    GPIO.output(motIN4D, 0)
+    ena.stop()
+    enb.stop()
+
+
+
+
+
+
+
+
