@@ -3,7 +3,7 @@ from automatic import mainAuto, stopAuto
 import RPi.GPIO as GPIO
 import raspi as pinmode
 import time
-import asyncio
+
 #App BACK-END
 # 10.30.0.199
 
@@ -206,8 +206,7 @@ def joys():
 @app.route('/auto/', methods=['POST'])
 def auto():
     post = request.get_json(force=True)
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(mainAuto(post['width'] ,post['height'], post['speed']))
+    mainAuto(post['width'] ,post['height'], post['speed'])
     return make_response('200')
 
 

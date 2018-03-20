@@ -52,6 +52,7 @@ function runAuto()
     if (dataOk == 3)
     {
         $.ajax({
+            async: true,
             url: '/auto/',
             type: 'POST',
             dataType: 'application/json;charset=UTF-8',
@@ -78,7 +79,7 @@ function stopAuto()
     jsonToSend.stopval = 400 ;
 
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    console.log("j'arrete le programm auto");
+    console.log("i stop auto");
     $.ajax({
             url: '/autoS/',
             type: 'POST',
