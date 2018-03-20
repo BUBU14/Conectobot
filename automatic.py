@@ -1,7 +1,9 @@
 import time
 import asyncio
-import raspi
+import raspi as pinmode
+import RPi.GPIO as GPIO
 
+pinmode.setup()
 finish = 0
 
 def mainAuto(width,height,speed):
@@ -17,12 +19,12 @@ def start(speed):
     while(finish != 1):
         while (capteurH ==0) :
             print("lets'go boy")
-            GPIO.output(motIN1G, 1)
-            GPIO.output(motIN2G, 0)
-            GPIO.output(motIN3D, 1)
-            GPIO.output(motIN4D, 0)
-            ena.start(speed)
-            enb.start(speed)
+            GPIO.output(pinmode.motIN1G, 1)
+            GPIO.output(pinmode.motIN2G, 0)
+            GPIO.output(pinmode.motIN3D, 1)
+            GPIO.output(pinmode.motIN4D, 0)
+            pinmode.ena.start(speed)
+            pinmode.enb.start(speed)
         if capteurH:
             moveInfo = changeDirection(moveInfo)
     return 1

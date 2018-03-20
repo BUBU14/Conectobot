@@ -1,10 +1,12 @@
 from flask import Flask, render_template, request, make_response
 from automatic import mainAuto, stopAuto
-import raspi
+import RPi.GPIO as GPIO
+import raspi as pinmode
 import time
 #App BACK-END
 # 10.30.0.199
 
+pinmode.setup()
 
 app = Flask(__name__)
 
@@ -20,10 +22,10 @@ def brush():
     print(post['state'])
     if post['state'] == 1:
         print("enable water")
-        GPIO.output(waterPIN,1)
+        GPIO.output(pinmode.waterPIN,1)
     elif post['state'] == 0:
         print("disable water")
-        GPIO.output(waterPIN,0)
+        GPIO.output(pinmode.waterPIN,0)
     else:
         print("error")
         return make_response('400')
@@ -36,10 +38,10 @@ def waterA():
     print(post['state'])
     if post['state'] == 1:
         print("enable brushA")
-        GPIO.output(brushAPIN, 1)
+        GPIO.output(pinmode.brushAPIN, 1)
     elif post['state'] == 0:
         print("disable brushA")
-        GPIO.output(brushAPIN, 0)
+        GPIO.output(pinmode.brushAPIN, 0)
     else:
         print("error")
         return make_response('400')
@@ -51,10 +53,10 @@ def waterB():
     print(post['state'])
     if post['state'] == 1:
         print("enable brushB")
-        GPIO.output(brushBPIN, 1)
+        GPIO.output(pinmode.brushBPIN, 1)
     elif post['state'] == 0:
         print("disable brushB")
-        GPIO.output(brushBPIN, 0)
+        GPIO.output(pinmode.brushBPIN, 0)
     else:
         print("error")
         return make_response('400')
@@ -66,10 +68,10 @@ def light():
     print(post['state'])
     if post['state'] == 1:
         print("enable light")
-        GPIO.output(lightPIN, 1)
+        GPIO.output(pinmode.lightPIN, 1)
     elif post['state'] == 0:
         print("disable light")
-        GPIO.output(lightPIN, 0)
+        GPIO.output(pinmode.lightPIN, 0)
     else:
         print("error")
         return make_response('400')
@@ -87,17 +89,17 @@ def clean():
 def back():
     post = request.get_json(force=True)
     print("turn back")
-    GPIO.output(motIN1G, 1)
-    GPIO.output(motIN2G, 0)
-    GPIO.output(motIN3D, 0)
-    GPIO.output(motIN4D, 1)
-    ena.start(maxSpeed)
-    enb.start(maxSpeed)
+    GPIO.output(pinmode.motIN1G, 1)
+    GPIO.output(pinmode.motIN2G, 0)
+    GPIO.output(pinmode.motIN3D, 0)
+    GPIO.output(pinmode.motIN4D, 1)
+    pinmode.ena.start(pinmode.maxSpeed)
+    pinmode.enb.start(pinmode.maxSpeed)
     time.sleep(5)
-    GPIO.output(motIN1G,0)
-    GPIO.output(motIN4D,0)
-    ena.stop()
-    enb.stop()
+    GPIO.output(pinmode.motIN1G,0)
+    GPIO.output(pinmode.motIN4D,0)
+    pinmode.ena.stop()
+    pinmode.enb.stop()
     return make_response('200')
 
 
@@ -106,19 +108,19 @@ def up():
     post = request.get_json(force=True)
     if post['up'] == 1:
         print("go up")
-        GPIO.output(motIN1G, 1)
-        GPIO.output(motIN2G, 0)
-        GPIO.output(motIN3D, 1)
-        GPIO.output(motIN4D, 0)
-        ena.start(maxSpeed)
-        enb.start(maxSpeed)
+        GPIO.output(pinmode.motIN1G, 1)
+        GPIO.output(pinmode.motIN2G, 0)
+        GPIO.output(pinmode.motIN3D, 1)
+        GPIO.output(pinmode.motIN4D, 0)
+        pinmode.ena.start(pinmode.maxSpeed)
+        pinmode.enb.start(pinmode.maxSpeed)
         return make_response('200')
     elif post['up'] == 0:
         print("stop up")
-        GPIO.output(motIN1G, 0)
-        GPIO.output(motIN3D, 0)
-        ena.stop()
-        enb.stop()
+        GPIO.output(pinmode.motIN1G, 0)
+        GPIO.output(pinmode.motIN3D, 0)
+        pinmode.ena.stop()
+        pinmode.enb.stop()
         return make_response('200')
     else:
         return make_response('400')
@@ -128,19 +130,19 @@ def down():
     post = request.get_json(force=True)
     if post['down'] == 1:
         print("go down")
-        GPIO.output(motIN1G, 0)
-        GPIO.output(motIN2G, 1)
-        GPIO.output(motIN3D, 0)
-        GPIO.output(motIN4D, 1)
-        ena.start(maxSpeed)
-        enb.start(maxSpeed)
+        GPIO.output(pinmode.motIN1G, 0)
+        GPIO.output(pinmode.motIN2G, 1)
+        GPIO.output(pinmode.motIN3D, 0)
+        GPIO.output(pinmode.motIN4D, 1)
+        pinmode.ena.start(pinmode.maxSpeed)
+        pinmode.enb.start(pinmode.maxSpeed)
         return make_response('200')
     elif post['down'] == 0:
         print("stop down")
-        GPIO.output(motIN2G, 0)
-        GPIO.output(motIN4D, 0)
-        ena.stop()
-        enb.stop()
+        GPIO.output(pinmode.motIN2G, 0)
+        GPIO.output(pinmode.motIN4D, 0)
+        pinmode.ena.stop()
+        pinmode.enb.stop()
         return make_response('200')
     else:
         return make_response('400')
@@ -172,19 +174,19 @@ def right():
     post = request.get_json(force=True)
     if post['right'] == 1:
         print("go right")
-        GPIO.output(motIN1G, 1)
-        GPIO.output(motIN2G, 0)
-        GPIO.output(motIN3D, 1)
-        GPIO.output(motIN4D, 0)
-        ena.start(maxSpeed)
-        enb.start(turnSpeed)
+        GPIO.output(pinmode.motIN1G, 1)
+        GPIO.output(pinmode.motIN2G, 0)
+        GPIO.output(pinmode.motIN3D, 1)
+        GPIO.output(pinmode.motIN4D, 0)
+        pinmode.ena.start(pinmode.maxSpeed)
+        pinmode.enb.start(pinmode.turnSpeed)
         return make_response('200')
     elif post['right'] == 0:
         print("stop right")
-        GPIO.output(motIN1G, 0)
-        GPIO.output(motIN3D, 0)
-        ena.stop()
-        enb.stop()
+        GPIO.output(pinmode.motIN1G, 0)
+        GPIO.output(pinmode.motIN3D, 0)
+        pinmode.ena.stop()
+        pinmode.enb.stop()
         return make_response('200')
     else:
         return make_response('400')
@@ -212,8 +214,8 @@ def autoS():
     post = request.get_json(force=True)
     print( "j'ai recu la requete de stop")
     print(post)
-    ena.stop()
-    enb.stop()
+    pinmode.ena.stop()
+    pinmode.enb.stop()
     GPIO.cleanup()
     stopAuto()
     return make_response('200')
