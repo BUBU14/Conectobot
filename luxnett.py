@@ -3,6 +3,7 @@ from automatic import mainAuto, stopAuto
 import RPi.GPIO as GPIO
 import raspi as pinmode
 import time
+import asyncio
 #App BACK-END
 # 10.30.0.199
 
@@ -152,19 +153,19 @@ def left():
     post = request.get_json(force=True)
     if post['left'] == 1:
         print("go left")
-        GPIO.output(motIN1G, 1)
-        GPIO.output(motIN2G, 0)
-        GPIO.output(motIN3D, 1)
-        GPIO.output(motIN4D, 0)
-        ena.start(turnSpeed)
-        enb.start(maxSpeed)
+        GPIO.output(pinmode.motIN1G, 1)
+        GPIO.output(pinmode.motIN2G, 0)
+        GPIO.output(pinmode.motIN3D, 1)
+        GPIO.output(pinmode.motIN4D, 0)
+        pinmode.ena.start(pinmode.turnSpeed)
+        pinmode.enb.start(pinmode.maxSpeed)
         return make_response('200')
     elif post['left'] == 0:
         print("stop left")
-        GPIO.output(motIN1G, 0)
-        GPIO.output(motIN3D, 0)
-        ena.stop()
-        enb.stop()
+        GPIO.output(pinmode.motIN1G, 0)
+        GPIO.output(pinmode.motIN3D, 0)
+        pinmode.ena.stop()
+        pinmode.enb.stop()
         return make_response('200')
     else:
         return make_response('400')
@@ -202,8 +203,9 @@ def joys():
 @app.route('/auto/', methods=['POST'])
 def auto():
     post = request.get_json(force=True)
-
-    status = mainAuto(post['width'] ,post['height'], post['speed'])
+    loop = asyncio.get_event_loop()
+    status = loop.run_until_complete(mainAuto(post['width'] ,post['height'], post['speed']))
+    loop.close()
     if status ==1:
         return make_response('200')
     else :

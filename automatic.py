@@ -1,7 +1,8 @@
 import time
-import asyncio
+
 import raspi as pinmode
 import RPi.GPIO as GPIO
+
 
 finish = 0
 
