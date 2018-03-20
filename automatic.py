@@ -4,20 +4,19 @@ import RPi.GPIO as GPIO
 
 finish = 0
 
-def mainAuto(width,height,speed):
+async def mainAuto(width,height,speed):
     print("i'm start auto")
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
     calculDuration(width,height,speed)
-    start(float(speed))
+    await start(float(speed))
     return 0
 
-
-
-async def start(speed):
+def start(speed):
     moveInfo = "LR"
     capteurH = 0
     while(finish != 1):
-        while (capteurH ==0) :
+        while (capteurH ==0):
+            print("let's go body")
             GPIO.output(pinmode.motIN1G, 1)
             GPIO.output(pinmode.motIN2G, 0)
             GPIO.output(pinmode.motIN3D, 1)
