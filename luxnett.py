@@ -11,6 +11,7 @@ app = Flask(__name__)
 
 pinmode.setup()
 
+
 # Route pour l'index.html
 @app.route('/')
 def hello_world():
@@ -84,6 +85,7 @@ def clean():
     post = request.get_json(force=True)
     print("clean GPIO")
     GPIO.cleanup()
+    pinmode.setup()
     return make_response('200')
 
 
