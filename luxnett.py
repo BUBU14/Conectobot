@@ -7,6 +7,7 @@ import asyncio
 #App BACK-END
 # 10.30.0.199
 
+pinmode.setup()
 
 app = Flask(__name__)
 
@@ -203,9 +204,7 @@ def joys():
 @app.route('/auto/', methods=['POST'])
 def auto():
     post = request.get_json(force=True)
-    loop = asyncio.get_event_loop()
-    loop.run_until_complete(mainAuto(post['width'] ,post['height'], post['speed']))
-
+    mainAuto(post['width'] ,post['height'], post['speed'])
     return make_response('200')
 
 
@@ -217,6 +216,7 @@ def autoS():
     pinmode.ena.stop()
     pinmode.enb.stop()
     GPIO.cleanup()
+    pinmode.setup()
     stopAuto()
     return make_response('200')
 

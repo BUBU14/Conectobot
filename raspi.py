@@ -1,18 +1,23 @@
 import RPi.GPIO as GPIO
 
-GPIO.setmode(GPIO.BCM)
+ena = 0
+enb = 0
 
-GPIO.setwarnings(False)
-GPIO.setup(18, GPIO.OUT)
-GPIO.setup(23, GPIO.OUT)
-GPIO.setup(24, GPIO.OUT)
-GPIO.setup(22, GPIO.OUT)
-GPIO.setup(16, GPIO.OUT)
-GPIO.setup(19, GPIO.OUT)
-GPIO.setup(20, GPIO.OUT)
-GPIO.setup(26, GPIO.OUT)
-GPIO.setup(12, GPIO.OUT)
-GPIO.setup(13, GPIO.OUT)
+def setup():
+    GPIO.setmode(GPIO.BCM)
+    GPIO.setwarnings(False)
+    GPIO.setup(18, GPIO.OUT)
+    GPIO.setup(23, GPIO.OUT)
+    GPIO.setup(24, GPIO.OUT)
+    GPIO.setup(22, GPIO.OUT)
+    GPIO.setup(16, GPIO.OUT)
+    GPIO.setup(19, GPIO.OUT)
+    GPIO.setup(20, GPIO.OUT)
+    GPIO.setup(26, GPIO.OUT)
+    GPIO.setup(12, GPIO.OUT)
+    GPIO.setup(13, GPIO.OUT)
+    ena = GPIO.PWM(12, 100)
+    enb = GPIO.PWM(13, 100)
 
 lightPIN = 18
 
@@ -33,5 +38,4 @@ motENB = 13
 maxSpeed = 100
 turnSpeed = 70
 
-ena = GPIO.PWM(12, 100)
-enb = GPIO.PWM(13, 100)
+
