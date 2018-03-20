@@ -35,14 +35,15 @@ def start(speed):
     capteurH = 0
     while(finish != 1):
         while (capteurH ==0) :
+            print("lets'go boy")
             GPIO.output(motIN1G, 1)
             GPIO.output(motIN2G, 0)
             GPIO.output(motIN3D, 1)
             GPIO.output(motIN4D, 0)
             ena.start(speed)
             enb.start(speed)
-            if capteurH:
-                moveInfo = changeDirection(moveInfo)
+        if capteurH:
+            moveInfo = changeDirection(moveInfo)
     return 1
 
 def changeDirection(moveInfo):
