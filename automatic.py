@@ -10,8 +10,9 @@ def mainAuto(width,height,speed):
     print("i'm start auto")
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
     calculDuration(width,height,speed)
-    status = start(float(speed))
-    return status
+    start(float(speed))
+    print("fin du programme")
+
 
 def start(speed):
     moveInfo = "LR"
@@ -27,7 +28,7 @@ def start(speed):
             pinmode.enb.start(speed)
         if capteurH:
             moveInfo = changeDirection(moveInfo)
-    return 1
+
 
 def changeDirection(moveInfo):
     if moveInfo == "LR":
