@@ -1,17 +1,20 @@
 import time
 import raspi as pinmode
 import RPi.GPIO as GPIO
+import asyncio
 
 finish = 0
 
 pinmode.setup()
 
+@asyncio.coroutine
 def mainAuto(width,height,speed):
     print("i'm start auto")
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
     calculDuration(width,height,speed)
-    start(float(speed))
+    yield from asyncio.wait([start(float(speed))])
 
+@asyncio.coroutine
 def start(speed):
     moveInfo = "LR"
     capteurH = 0

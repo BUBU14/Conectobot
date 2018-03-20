@@ -206,7 +206,8 @@ def joys():
 @app.route('/auto/', methods=['POST'])
 def auto():
     post = request.get_json(force=True)
-    mainAuto(post['width'] ,post['height'], post['speed'])
+    loop = asyncio.get_event_loop()
+    loop.run_until_complete(mainAuto(post['width'] ,post['height'], post['speed']))
     return make_response('200')
 
 
