@@ -91,3 +91,6 @@ def turnBack():
     GPIO.output(motIN4D, 1)
     ena.start(maxSpeed)
     enb.start(maxSpeed)
+
+def runJoys(x , y):
+    straightAhead()
