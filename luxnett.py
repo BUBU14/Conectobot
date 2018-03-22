@@ -159,7 +159,7 @@ def right():
 def joys():
     post = request.get_json(force=True)
     print("\n reception: \n\t X :" , post['x'] , "\n\t Y :" ,post['y'])
-    pinmode.runJoys(post['X'], post['Y'])
+
     return make_response('200')
 
 # Route mode auto
