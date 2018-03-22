@@ -8,6 +8,7 @@ def mainAuto(width,height,speed):
     print("i'm start auto")
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
     calculDuration(width,height,speed)
+    pinmode.finish = 0
     start(float(speed))
 
 def start(speed):
@@ -53,5 +54,4 @@ def calculDuration(width, height,speed):
     print("Duration of clean: " + str(duration) + "minutes")
 
 def stopAuto():
-    print("i want to kill programm")
     pinmode.finish = 1

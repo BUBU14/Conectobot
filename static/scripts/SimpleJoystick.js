@@ -230,6 +230,22 @@ function GetJoystick_Y()
 
 function stopJoystick()
 {
-
     JoystickReady = false ;
+    var jsonToSend = new Object() ;
+
+    jsonToSend.stopval = 400 ;
+
+    var jsonString = JSON.stringify(jsonToSend, null, '\t');
+    console.log("i stop joystick");
+    $.ajax({
+            url: '/autoS/',
+            type: 'POST',
+            dataType: 'application/json;charset=UTF-8',
+            data: jsonString,
+            statusCode: {
+                200: function () {
+                    console.log("program finish with no error !");
+                }
+            }
+        });
 }
