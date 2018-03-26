@@ -20,6 +20,7 @@ def start(speed):
         pinmode.enb.start(speed)
         time.sleep(10)
         moveInfo = changeDirection(moveInfo)
+    pinmode.disableComponent()
     print("end programm")
 
 def changeDirection(moveInfo):

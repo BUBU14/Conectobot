@@ -49,10 +49,6 @@ maxSpeed = 100
 turnSpeed = 70
 
 def stopRun():
-    GPIO.output(lightPIN, 0)
-    GPIO.output(waterPIN, 0)
-    GPIO.output(brushAPIN, 0)
-    GPIO.output(brushBPIN, 0)
     GPIO.output(motIN1G, 0)
     GPIO.output(motIN2G, 0)
     GPIO.output(motIN3D, 0)
@@ -121,6 +117,12 @@ def enableComponent():
     GPIO.output(waterPIN, 1)
     GPIO.output(brushAPIN, 1)
     GPIO.output(brushBPIN, 1)
+
+def disableComponent():
+    GPIO.output(lightPIN, 0)
+    GPIO.output(waterPIN, 0)
+    GPIO.output(brushAPIN, 0)
+    GPIO.output(brushBPIN, 0)
 
 def runJoys(x , y):
     straightAhead()
