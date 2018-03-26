@@ -49,6 +49,10 @@ maxSpeed = 100
 turnSpeed = 70
 
 def stopRun():
+    GPIO.output(lightPIN, 0)
+    GPIO.output(waterPIN, 0)
+    GPIO.output(brushAPIN, 0)
+    GPIO.output(brushBPIN, 0)
     GPIO.output(motIN1G, 0)
     GPIO.output(motIN2G, 0)
     GPIO.output(motIN3D, 0)
@@ -88,6 +92,22 @@ def goRight():
     ena.start(maxSpeed)
     enb.start(turnSpeed)
 
+def turnLeft():
+    GPIO.output(motIN1G, 0)
+    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN3D, 1)
+    GPIO.output(motIN4D, 0)
+    ena.start(turnSpeed)
+    enb.start(maxSpeed)
+
+def turnRight():
+    GPIO.output(motIN1G, 1)
+    GPIO.output(motIN2G, 0)
+    GPIO.output(motIN3D, 0)
+    GPIO.output(motIN4D, 0)
+    ena.start(maxSpeed)
+    enb.start(turnSpeed)
+
 def turnBack():
     GPIO.output(motIN1G, 1)
     GPIO.output(motIN2G, 0)
@@ -95,6 +115,12 @@ def turnBack():
     GPIO.output(motIN4D, 1)
     ena.start(maxSpeed)
     enb.start(maxSpeed)
+
+def enableComponent():
+    GPIO.output(lightPIN, 1)
+    GPIO.output(waterPIN, 1)
+    GPIO.output(brushAPIN, 1)
+    GPIO.output(brushBPIN, 1)
 
 def runJoys(x , y):
     straightAhead()

@@ -98,6 +98,7 @@ def clean():
     post = request.get_json(force=True)
     print("clean GPIO")
     GPIO.cleanup()
+    time.sleep(1)
     pinmode.setup()
     return make_response('200')
 
