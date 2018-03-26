@@ -14,17 +14,17 @@ def mainAuto(width,height,speed):
 def start(speed):
     moveInfo = "LR"
     while(pinmode.finish != 1):
-        while(pinmode.inCaptPIN == 0):
-            GPIO.output(pinmode.lightPIN, 1)
-            GPIO.output(pinmode.waterPIN, 1)
-            GPIO.output(pinmode.brushAPIN, 1)
-            GPIO.output(pinmode.brushBPIN, 1)
-            GPIO.output(pinmode.motIN1G, 1)
-            GPIO.output(pinmode.motIN2G, 0)
-            GPIO.output(pinmode.motIN3D, 1)
-            GPIO.output(pinmode.motIN4D, 0)
-            pinmode.ena.start(speed)
-            pinmode.enb.start(speed)
+        GPIO.output(pinmode.lightPIN, 1)
+        GPIO.output(pinmode.waterPIN, 1)
+        GPIO.output(pinmode.brushAPIN, 1)
+        GPIO.output(pinmode.brushBPIN, 1)
+        GPIO.output(pinmode.motIN1G, 1)
+        GPIO.output(pinmode.motIN2G, 0)
+        GPIO.output(pinmode.motIN3D, 1)
+        GPIO.output(pinmode.motIN4D, 0)
+        pinmode.ena.start(speed)
+        pinmode.enb.start(speed)
+        time.sleep(10)
         moveInfo = changeDirection(moveInfo)
     print("end programm")
 
@@ -41,7 +41,9 @@ def changeDirection(moveInfo):
         return "LR"
 
 def offset():
-    print("GPIO 4")
+    pinmode.straightAhead()
+    time.sleep(5)
+    pinmode.stopRun()
 
 def rotation(direction):
     print("turn " + str(direction) )
