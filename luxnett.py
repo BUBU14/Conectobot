@@ -30,12 +30,6 @@ def video_feed():
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
-
-@app.route('/video_feed')
-def video_feed():
-    filename = "/tmp/picam-%s.h264" % time.strftime("%Y%m%d-%H%M%S")
-    picam.recordVideoWithDetails(filename, 640, 480, 5000)
-
 # Route mode manuel
 @app.route('/water/', methods=['POST'])
 def brush():
