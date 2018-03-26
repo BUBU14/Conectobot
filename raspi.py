@@ -8,7 +8,7 @@ def setup():
     GPIO.setup(18, GPIO.OUT)
     GPIO.setup(23, GPIO.OUT)
     GPIO.setup(24, GPIO.OUT)
-    GPIO.setup(22, GPIO.OUT)
+    GPIO.setup(27, GPIO.OUT)
     GPIO.setup(16, GPIO.OUT)
     GPIO.setup(19, GPIO.OUT)
     GPIO.setup(20, GPIO.OUT)
