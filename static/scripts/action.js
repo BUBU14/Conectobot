@@ -120,14 +120,14 @@ function statusWater() {
             200: function () {
                 if (elem.value == "Stop") {
                     elem.value = "Start";
-                    elem.classList.remove("is-success");
-                    elem.classList.add("is-warning");
+                    elem.classList.remove("is-warning");
+                    elem.classList.add("is-success");
                     console.log("I'm starting water");
                 }
                 else {
                     elem.value = "Stop";
-                    elem.classList.remove("is-warning");
-                    elem.classList.add("is-success");
+                    elem.classList.remove("is-success");
+                    elem.classList.add("is-warning");
                     console.log("I'm ending water");
                 }
                 console.log("Success !");
