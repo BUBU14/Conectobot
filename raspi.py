@@ -30,7 +30,7 @@ lightPIN = 18
 brushAPIN = 23
 brushBPIN = 24
 
-waterPIN = 22
+waterPIN = 27
 
 motIN1G = 16
 motIN2G = 19
