@@ -114,7 +114,7 @@ def turnBack():
 
 def enableComponent():
     GPIO.output(lightPIN, 1)
-    GPIO.output(waterPIN, 1)
+    GPIO.output(waterPIN, 0)
     GPIO.output(brushAPIN, 1)
     GPIO.output(brushBPIN, 1)
 
@@ -127,7 +127,3 @@ def disableComponent():
 def runJoys(x , y):
     straightAhead()
 
-GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
-GPIO.add_event_detect(inCaptPIN, GPIO.RISING)
-def my_callback():
-    print('PUSHED!')
