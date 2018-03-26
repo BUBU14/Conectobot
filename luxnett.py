@@ -3,7 +3,7 @@ from automatic import mainAuto, stopAuto
 import RPi.GPIO as GPIO
 import raspi as pinmode
 import time
-
+from camera_py import Camera
 #App BACK-END
 # 10.30.0.199
 
