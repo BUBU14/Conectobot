@@ -103,5 +103,3 @@ GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
 GPIO.add_event_detect(inCaptPIN, GPIO.RISING)
 def my_callback():
     print('PUSHED!')
-GPIO.add_event_callback(inCaptPIN, my_callback)
-
