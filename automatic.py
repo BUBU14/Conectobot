@@ -14,7 +14,7 @@ def mainAuto(width,height,speed):
 def start(speed):
     moveInfo = "LR"
     while(pinmode.finish != 1):
-        while(pinmode.captGO == 0):
+        while(pinmode.inCaptPIN == 0):
             GPIO.output(pinmode.lightPIN, 1)
             GPIO.output(pinmode.waterPIN, 1)
             GPIO.output(pinmode.brushAPIN, 1)
