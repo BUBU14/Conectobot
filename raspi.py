@@ -1,6 +1,7 @@
 import RPi.GPIO as GPIO
 
 finish = 0
+captGo = 0
 
 def setup():
     GPIO.setmode(GPIO.BCM)
@@ -15,6 +16,7 @@ def setup():
     GPIO.setup(26, GPIO.OUT)
     GPIO.setup(12, GPIO.OUT)
     GPIO.setup(13, GPIO.OUT)
+    GPIO.setup(22, GPIO.IN)
     ena = GPIO.PWM(12, 100)
     enb = GPIO.PWM(13, 100)
 
@@ -40,6 +42,8 @@ motIN4D = 20
 
 motENA = 12
 motENB = 13
+
+inCaptPIN = 22
 
 maxSpeed = 100
 turnSpeed = 70
@@ -94,3 +98,9 @@ def turnBack():
 
 def runJoys(x , y):
     straightAhead()
+
+GPIO.add_event_detect(inCaptPIN, GPIO.RISING)
+def my_callback():
+    print('PUSHED!')
+GPIO.add_event_callback(inCaptPIN, my_callback)
+

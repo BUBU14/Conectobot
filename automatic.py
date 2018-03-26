@@ -13,18 +13,17 @@ def mainAuto(width,height,speed):
 
 def start(speed):
     moveInfo = "LR"
-    capteurH = 0
     while(pinmode.finish != 1):
-        GPIO.output(pinmode.motIN1G, 1)
-        GPIO.output(pinmode.motIN2G, 0)
-        GPIO.output(pinmode.motIN3D, 1)
-        GPIO.output(pinmode.motIN4D, 0)
-        pinmode.ena.start(speed)
-        pinmode.enb.start(speed)
-        time.sleep(10)
-        pinmode.finish = 1
-    print("end programm")
+        while(pinmode.captGO == 0):
+            GPIO.output(pinmode.motIN1G, 1)
+            GPIO.output(pinmode.motIN2G, 0)
+            GPIO.output(pinmode.motIN3D, 1)
+            GPIO.output(pinmode.motIN4D, 0)
+            pinmode.ena.start(speed)
+            pinmode.enb.start(speed)
 
+        moveInfo = changeDirection(moveInfo)
+    print("end programm")
 
 def changeDirection(moveInfo):
     if moveInfo == "LR":
@@ -55,3 +54,4 @@ def calculDuration(width, height,speed):
 
 def stopAuto():
     pinmode.finish = 1
+
