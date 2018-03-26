@@ -16,7 +16,7 @@ def setup():
     GPIO.setup(26, GPIO.OUT)
     GPIO.setup(12, GPIO.OUT)
     GPIO.setup(13, GPIO.OUT)
-    GPIO.setup(22, GPIO.IN)
+    GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     ena = GPIO.PWM(12, 100)
     enb = GPIO.PWM(13, 100)
 
