@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request, make_response, Response
 from automatic import mainAuto, stopAuto
-from camera import Camera
+from picam import *
 import RPi.GPIO as GPIO
 import raspi as pinmode
 import time
@@ -18,16 +18,11 @@ pinmode.setup()
 def hello_world():
     return render_template('index.html')
 
-def gen(camera):
-    while True:
-        frame = camera.get_frame()
-        yield (b'--frame\r\n'
-               b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen(Camera()),
-                    mimetype='multipart/x-mixed-replace; boundary=frame')
+    filename = "/tmp/picam-%s.h264" % time.strftime("%Y%m%d-%H%M%S")
+    picam.recordVideoWithDetails(filename, 640, 480, 5000)
 
 # Route mode manuel
 @app.route('/water/', methods=['POST'])
