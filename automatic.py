@@ -14,14 +14,18 @@ def mainAuto(width,height,speed):
 def start(speed):
     moveInfo = "LR"
     while(pinmode.finish != 1):
+        GPIO.output()
         while(pinmode.captGO == 0):
+            GPIO.output(pinmode.lightPIN, 1)
+            GPIO.output(pinmode.waterPIN, 1)
+            GPIO.output(pinmode.brushAPIN, 1)
+            GPIO.output(pinmode.brushBPIN, 1)
             GPIO.output(pinmode.motIN1G, 1)
             GPIO.output(pinmode.motIN2G, 0)
             GPIO.output(pinmode.motIN3D, 1)
             GPIO.output(pinmode.motIN4D, 0)
             pinmode.ena.start(speed)
             pinmode.enb.start(speed)
-
         moveInfo = changeDirection(moveInfo)
     print("end programm")
 
