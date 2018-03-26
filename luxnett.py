@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, make_response, Response
 from automatic import mainAuto, stopAuto
-from picam import *
 import RPi.GPIO as GPIO
 import raspi as pinmode
 import time
