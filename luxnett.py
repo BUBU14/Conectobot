@@ -1,14 +1,17 @@
-from flask import Flask, render_template, request, make_response, Response
+from flask import Flask, render_template, request, Response
+from flask_socketio import SocketIO, send
 from automatic import mainAuto, stopAuto
 import RPi.GPIO as GPIO
 import raspi as pinmode
 import time
 from camera_py import Camera
+
 #App BACK-END
 # 10.30.0.199
 
 app = Flask(__name__)
-
+app.config['SECRET_KEY'] = 'secret!'
+socketio = SocketIO(app)
 pinmode.setup()
 
 
@@ -24,16 +27,15 @@ def gen(camera):
         yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
-@app.route('/video_feed/')
+@socketio.on('video_feed')
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # Route mode manuel
-@app.route('/water/', methods=['POST'])
-def brush():
-    post = request.get_json(force=True)
+@socketio.on('water')
+def water(post):
     print(post['state'])
     if post['state'] == 1:
         print("enable water")
@@ -44,13 +46,15 @@ def brush():
         GPIO.output(pinmode.waterPIN,0)
     else:
         print("error")
-        return make_response('400')
-    return make_response('200')
+        return send('400')
+    return send('200')
 
+@socketio.on('connect')
+def connect(post):
+    print(post['data'])
 
-@app.route('/brushA/', methods=['POST'])
-def waterA():
-    post = request.get_json(force=True)
+@socketio.on('brushA')
+def brushA(post):
     print(post['state'])
     if post['state'] == 1:
         print("enable brushA")
@@ -60,12 +64,11 @@ def waterA():
         GPIO.output(pinmode.brushAPIN, 0)
     else:
         print("error")
-        return make_response('400')
-    return make_response('200')
+        return send('400')
+    return send('200')
 
-@app.route('/brushB/', methods=['POST'])
-def waterB():
-    post = request.get_json(force=True)
+@socketio.on('brushB')
+def brushB(post):
     print(post['state'])
     if post['state'] == 1:
         print("enable brushB")
@@ -75,12 +78,12 @@ def waterB():
         GPIO.output(pinmode.brushBPIN, 0)
     else:
         print("error")
-        return make_response('400')
-    return make_response('200')
+        return send('400')
+    return send('200')
 
-@app.route('/light/', methods=['POST'])
-def light():
-    post = request.get_json(force=True)
+@socketio.on('light')
+def light(post):
+
     print(post['state'])
     if post['state'] == 1:
         print("enable light")
@@ -90,103 +93,103 @@ def light():
         GPIO.output(pinmode.lightPIN, 0)
     else:
         print("error")
-        return make_response('400')
-    return make_response('200')
+        return send('400')
+    return send('200')
 
-@app.route('/clean/', methods=['POST'])
-def clean():
-    post = request.get_json(force=True)
+@socketio.on('clean')
+def clean(post):
+
     print("clean GPIO")
     GPIO.cleanup()
     time.sleep(1)
     pinmode.setup()
-    return make_response('200')
+    return send('200')
 
 
-@app.route('/back/', methods=['POST'])
-def back():
-    post = request.get_json(force=True)
+@socketio.on('back')
+def back(post):
+
     print("turn back")
     pinmode.turnBack()
     time.sleep(5)
     pinmode.stopRun()
-    return make_response('200')
+    return send('200')
 
 
-@app.route('/up/', methods=['POST'])
-def up():
-    post = request.get_json(force=True)
+@socketio.on('up')
+def up(post):
+
     if post['up'] == 1:
         print("go up")
         pinmode.straightAhead()
-        return make_response('200')
+        return send('200')
     elif post['up'] == 0:
         print("stop up")
         pinmode.stopRun()
-        return make_response('200')
+        return send('200')
     else:
-        return make_response('400')
+        return send('400')
 
-@app.route('/down/', methods=['POST'])
-def down():
-    post = request.get_json(force=True)
+@socketio.on('down')
+def down(post):
+
     if post['down'] == 1:
         print("go down")
         pinmode.retreat()
-        return make_response('200')
+        return send('200')
     elif post['down'] == 0:
         print("stop down")
         pinmode.stopRun()
-        return make_response('200')
+        return send('200')
     else:
-        return make_response('400')
+        return send('400')
 
-@app.route('/left/', methods=['POST'])
-def left():
-    post = request.get_json(force=True)
+@socketio.on('left')
+def left(post):
+
     if post['left'] == 1:
         print("go left")
         pinmode.goLeft()
-        return make_response('200')
+        return send('200')
     elif post['left'] == 0:
         print("stop left")
         pinmode.stopRun()
-        return make_response('200')
+        return send('200')
     else:
-        return make_response('400')
+        return send('400')
 
-@app.route('/right/', methods=['POST'])
-def right():
-    post = request.get_json(force=True)
+@socketio.on('right')
+def right(post):
+
     if post['right'] == 1:
         print("go right")
         pinmode.goRight()
-        return make_response('200')
+        return send('200')
     elif post['right'] == 0:
         print("stop right")
         pinmode.stopRun()
-        return make_response('200')
+        return send('200')
     else:
-        return make_response('400')
+        return send('400')
 
-@app.route('/joys/', methods=['POST'])
-def joys():
-    post = request.get_json(force=True)
+@socketio.on('joys')
+def joys(post):
+
     print("\n reception: \n\t X :" , post['x'] , "\n\t Y :" ,post['y'])
 
-    return make_response('200')
+    return send('200')
 
 # Route mode auto
-@app.route('/auto/', methods=['POST'])
-def auto():
-    post = request.get_json(force=True)
+@socketio.on('auto')
+def auto(post):
+
     mainAuto(post['width'] ,post['height'], post['speed'])
-    return make_response('200')
+    return send('200')
 
 
-@app.route('/autoS/', methods=['POST'])
-def autoS():
-    post = request.get_json(force=True)
+@socketio.on('autoS')
+def autoS(post):
+
     print( "j'ai recu la requete de stop")
     print(post)
     pinmode.ena.stop()
@@ -194,8 +197,8 @@ def autoS():
     GPIO.cleanup()
     pinmode.setup()
     stopAuto()
-    return make_response('200')
+    return send('200')
 
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    socketio.run(app, host='0.0.0.0', port=5000)

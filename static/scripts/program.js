@@ -1,3 +1,6 @@
+import {init} from 'socket';
+var socket = init();
+
 function runAuto()
 {
     var elemW = $("#Width");

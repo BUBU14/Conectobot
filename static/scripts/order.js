@@ -1,4 +1,5 @@
-
+import {init} from 'socket';
+var socket = init();
 
 function statusBack() {
     var elem = document.getElementById("back");
