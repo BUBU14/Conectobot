@@ -69,7 +69,7 @@ def brushA(post):
 
 @socketio.on('brushB')
 def brushB(post):
-    print(post['state'])
+    print(str(post))
     if post['state'] == 1:
         print("enable brushB")
         GPIO.output(pinmode.brushBPIN, 1)
