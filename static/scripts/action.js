@@ -51,9 +51,8 @@ function statusWater() {
     {
         state = 0 ;
     }
-    jsonToSend.state = state;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    socket.emit('water',jsonString);
+
+    socket.emit('water',{data : state});
 }
 
 function statusLight() {

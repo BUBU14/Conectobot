@@ -41,7 +41,6 @@ def connect(post):
 @socketio.on('water')
 def water(post):
     print(post)
-    print(post[int('state')])
 
     return send('200')
 
