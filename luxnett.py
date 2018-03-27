@@ -4,6 +4,8 @@ import RPi.GPIO as GPIO
 import raspi as pinmode
 import time
 from camera_py import Camera
+
+
 #App BACK-END
 # 10.30.0.199
 
@@ -21,13 +23,13 @@ def gen(camera):
     """Video streaming generator function."""
     while True:
         frame = camera.get_frame()
-        yield (b'--frame\r\n'
+        return (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 @app.route('/video_feed/')
 def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
-    yield Response(gen(Camera()),
+    return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
 
 # Route mode manuel
