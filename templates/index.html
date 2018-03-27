@@ -169,5 +169,13 @@
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/program.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/display.js') }}"></script>
 <script type="text/javascript" src="{{ url_for('static', filename='scripts/SimpleJoystick.js') }}"></script>
+<script>
+    var socket = io.connect('http://' + document.domain + ':' + location.port);
+    print(socket);
+    socket.on('connect', function() {
+        print("lets go socket action");
+        socket.emit('event', {data: 'Connected!'});
+    });
+</script>
 
 </html>

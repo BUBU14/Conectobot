@@ -12,14 +12,13 @@ from camera_py import Camera
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
-engage = 0
 pinmode.setup()
 
 
 # Route pour l'index.html
 @app.route('/')
 def hello_world():
-    return render_template('index.html', value=engage)
+    return render_template('index.html')
 
 def gen(camera):
     """Video streaming generator function."""
