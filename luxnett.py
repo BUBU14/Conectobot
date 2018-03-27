@@ -51,7 +51,7 @@ def water(post):
 
 @socketio.on('event')
 def connect(post):
-    print(post['data'])
+    print('received json: '+ str(post))
 
 @socketio.on('brushA')
 def brushA(post):
