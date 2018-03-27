@@ -4,8 +4,6 @@ import RPi.GPIO as GPIO
 import raspi as pinmode
 import time
 from camera_py import Camera
-
-
 #App BACK-END
 # 10.30.0.199
 
@@ -23,7 +21,7 @@ def gen(camera):
     """Video streaming generator function."""
     while True:
         frame = camera.get_frame()
-        return (b'--frame\r\n'
+        yield (b'--frame\r\n'
                b'Content-Type: image/jpeg\r\n\r\n' + frame + b'\r\n')
 
 @app.route('/video_feed/')
