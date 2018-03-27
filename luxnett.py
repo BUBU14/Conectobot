@@ -12,13 +12,14 @@ from camera_py import Camera
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'secret!'
 socketio = SocketIO(app)
+engage = 0
 pinmode.setup()
 
 
 # Route pour l'index.html
 @app.route('/')
 def hello_world():
-    return render_template('index.html')
+    return render_template('index.html', value=engage)
 
 def gen(camera):
     """Video streaming generator function."""
@@ -32,6 +33,10 @@ def video_feed():
     """Video streaming route. Put this in the src attribute of an img tag."""
     return Response(gen(Camera()),
                     mimetype='multipart/x-mixed-replace; boundary=frame')
+
+@socketio.on('event')
+def connect(post):
+    print('received json: '+ str(post))
 
 # Route mode manuel
 @socketio.on('water')
@@ -48,10 +53,6 @@ def water(post):
         print("error")
         return send('400')
     return send('200')
-
-@socketio.on('event')
-def connect(post):
-    print('received json: '+ str(post))
 
 @socketio.on('brushA')
 def brushA(post):
