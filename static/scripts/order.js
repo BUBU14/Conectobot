@@ -1,5 +1,7 @@
-import {init} from 'socket';
-var socket = init();
+var socket = io.connect('http://' + document.domain + ':' + location.port);
+    socket.on('connect', function() {
+        socket.emit('event', {data: 'Connected!'});
+    });
 
 function statusBack() {
     var elem = document.getElementById("back");
