@@ -41,16 +41,6 @@ def connect(post):
 @socketio.on('water')
 def water(post):
     print(post)
-    if post['state'] == 1:
-        print("enable water")
-        print(pinmode.waterPIN)
-        GPIO.output(pinmode.waterPIN,1)
-    elif post['state'] == 0:
-        print("disable water")
-        GPIO.output(pinmode.waterPIN,0)
-    else:
-        print("error")
-        return send('400')
     return send('200')
 
 @socketio.on('brushA')
