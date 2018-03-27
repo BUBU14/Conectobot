@@ -1,5 +1,5 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port);
-print(socket)
+print(socket);
 socket.on('connect', function() {
         print("lets go socket action");
         socket.emit('event', {data: 'Connected!'});

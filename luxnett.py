@@ -85,6 +85,7 @@ def brushB(post):
 def light(post):
 
     print(post['state'])
+    print("turn light")
     if post['state'] == 1:
         print("enable light")
         GPIO.output(pinmode.lightPIN, 1)
