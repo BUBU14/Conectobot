@@ -44,10 +44,10 @@ def water(post):
     if post['data'] == 1:
         print("enable water")
         print(pinmode.waterPIN)
-        GPIO.output(pinmode.waterPIN, 1)
+        GPIO.output(pinmode.waterPIN, 0)
     elif post['data'] == 0:
         print("disable water")
-        GPIO.output(pinmode.waterPIN, 0)
+        GPIO.output(pinmode.waterPIN, 1)
     else:
         print("error")
         return send('400')
