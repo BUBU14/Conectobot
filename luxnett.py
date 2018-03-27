@@ -40,7 +40,8 @@ def connect(post):
 # Route mode manuel
 @socketio.on('water')
 def water(post):
-    print(post.state)
+    print(post)
+    print(post[int('state')])
 
     return send('200')
 
