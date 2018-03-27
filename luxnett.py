@@ -85,12 +85,11 @@ def brushB(post):
 @socketio.on('light')
 def light(post):
 
-    print(post['state'])
-    print("turn light")
-    if post['state'] == 1:
+    print(post['data'])
+    if post['data'] == 1:
         print("enable light")
         GPIO.output(pinmode.lightPIN, 1)
-    elif post['state'] == 0:
+    elif post['data'] == 0:
         print("disable light")
         GPIO.output(pinmode.lightPIN, 0)
     else:

@@ -1,8 +1,8 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port);
 socket.on('connect', function() {
-        console.log("lets go socket action");
-        socket.emit('event', {data: 'Connected!'});
-    });
+    console.log("lets go socket action");
+    socket.emit('event', {data: 'Connected!'});
+});
 
 function statusBrushA() {
     var elem = document.getElementById("brushA");
@@ -12,10 +12,12 @@ function statusBrushA() {
     if (elem.value =="Stop")
     {
         state = 1 ;
+        elem.value = "Start"
     }
     else
     {
         state = 0 ;
+        elem.value = "Stop"
     }
     jsonToSend.state = state;
     var jsonString = JSON.stringify(jsonToSend, null, '\t');
@@ -46,10 +48,18 @@ function statusWater() {
     if (elem.value =="Stop")
     {
         state = 1 ;
+        elem.value ="Start";
+        elem.classList.remove("is-warning");
+        elem.classList.add("is-success");
+        console.log("I'm starting water");
     }
     else
     {
         state = 0 ;
+        elem.value ="Stop";
+        elem.classList.remove("is-success");
+        elem.classList.add("is-warning");
+        console.log("I'm ending water");
     }
 
     socket.emit('water',{data : state});
@@ -63,14 +73,21 @@ function statusLight() {
     if (elem.value =="Stop")
     {
         state = 1 ;
+        elem.value ="Start"
+        elem.classList.remove("is-warning");
+        elem.classList.add("is-success");
+        console.log("I'm ending water");
     }
     else
     {
         state = 0 ;
+        elem.value ="Stop"
+        elem.classList.remove("is-success");
+        elem.classList.add("is-warning");
+        console.log("I'm ending water");
     }
-    state;
-    var jsonString = JSON.stringify(1, null, '\t');
-    socket.emit('light',jsonString);
+
+    socket.emit('light',{data : state});
 }
 
 function clean(){
