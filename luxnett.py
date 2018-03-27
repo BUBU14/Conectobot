@@ -45,7 +45,7 @@ def water(post):
         print("enable water")
         print(pinmode.waterPIN)
         GPIO.output(pinmode.waterPIN, 1)
-    elif post == 0:
+    elif post['data'] == 0:
         print("disable water")
         GPIO.output(pinmode.waterPIN, 0)
     else:
