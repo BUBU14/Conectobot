@@ -49,7 +49,7 @@ def water(post):
         return send('400')
     return send('200')
 
-@socketio.on('connect')
+@socketio.on('event')
 def connect(post):
     print(post['data'])
 
