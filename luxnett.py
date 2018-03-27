@@ -40,7 +40,7 @@ def connect(post):
 # Route mode manuel
 @socketio.on('water')
 def water(post):
-    print(str(post))
+    print(post)
     if post['state'] == 1:
         print("enable water")
         print(pinmode.waterPIN)

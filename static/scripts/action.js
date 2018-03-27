@@ -1,5 +1,4 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port);
-print(socket);
 socket.on('connect', function() {
         print("lets go socket action");
         socket.emit('event', {data: 'Connected!'});
@@ -70,8 +69,8 @@ function statusLight() {
     {
         state = 0 ;
     }
-    jsonToSend.state = state;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
+    state;
+    var jsonString = JSON.stringify(1, null, '\t');
     socket.emit('light',jsonString);
 }
 
