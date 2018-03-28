@@ -9,17 +9,28 @@ def mainAuto(width,height,speed):
     print("clean restriction:\n \t width\t:"+width+"\n \t height\t:"+height+"\n \t speed\t:"+speed)
     calculDuration(width,height,speed)
     pinmode.finish = 0
-    start(float(speed))
-
-def start(speed):
+    endProg = 0
     moveInfo = "LR"
-    while(pinmode.finish != 1):
+    while( endProg != 1):
+        endProg = start(float(speed),moveInfo, endProg)
+
+
+def start(speed,moveInfo,endProg):
+    if endProg ==0:
         pinmode.enableComponent()
         pinmode.straightAhead()
         pinmode.ena.start(speed)
         pinmode.enb.start(speed)
-    pinmode.disableComponent()
-    print("end programm")
+        time.sleep(2)
+        return 2
+    if pinmode.finish == 1 :
+        pinmode.disableComponent()
+        print("end programm")
+        return 1
+    if endProg ==2:
+        changeDirection(moveInfo)
+        return 0
+
 
 def changeDirection(moveInfo):
     if moveInfo == "LR":
