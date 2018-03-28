@@ -1,8 +1,8 @@
 var socket = io.connect('http://' + document.domain + ':' + location.port);
-    socket.on('connect', function() {
-        console.log("lets go socket order");
-        socket.emit('event', {data: 'Connected!'});
-    });
+socket.on('connect', function() {
+    console.log("lets go socket order");
+    socket.emit('event', {data: 'Connected!'});
+});
 
 function statusBack() {
     var elem = document.getElementById("back");
@@ -12,27 +12,15 @@ function statusBack() {
     elem.classList.add("is-loading");
     elem.classList.add("is-disabled");
     console.log("i'm turn back");
+    socket.emit('back', {data : 1});
+    setTimeout(function(){
+        elem.classList.remove("is-success");
+        elem.classList.remove("is-loading");
+        elem.classList.remove("is-disabled");
+        elem.classList.add("is-warning");
+        console.log("Success !");
+    }, 2000);
 
-    var jsonString = JSON.stringify(1, null, '\t');
-    $.ajax({
-        url: '/back/',
-        type: 'POST',
-        dataType: 'application/json;charset=UTF-8',
-        data: jsonString,
-        statusCode: {
-            200: function () {
-                elem.classList.remove("is-success");
-                elem.classList.remove("is-loading");
-                elem.classList.remove("is-disabled");
-                elem.classList.add("is-warning");
-                console.log("Success !");
-            },
-            400: function () {
-                console.log("Couldn't change state of back")
-                elem.removeClass("is-success").addClass("is-danger");
-            }
-        }
-    });
 }
 
 var mousedownID = -1 ;
@@ -89,7 +77,7 @@ function sendDown() {
 
 function sendEndDown() {
 
-   socket.emit('down',{data : 0});
+    socket.emit('down',{data : 0});
 }
 
 
@@ -112,12 +100,12 @@ function mouseMoveLeft() {
 function sendLeft() {
     var elem = document.getElementById("left");
     elem.classList.add("is-success");
-   socket.emit('left',{data : 1});
+    socket.emit('left',{data : 1});
 }
 
 
 function sendEndLeft() {
-socket.emit('left',{data : 0});
+    socket.emit('left',{data : 0});
 }
 
 

@@ -18,7 +18,7 @@ def start(speed):
         pinmode.straightAhead()
         pinmode.ena.start(speed)
         pinmode.enb.start(speed)
-        time.sleep(10)
+        time.sleep(5)
         moveInfo = changeDirection(moveInfo)
     pinmode.disableComponent()
     print("end programm")
@@ -56,4 +56,5 @@ def calculDuration(width, height,speed):
 
 def stopAuto():
     pinmode.finish = 1
+    pinmode.disableComponent()
 
