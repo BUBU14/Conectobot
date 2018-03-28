@@ -183,7 +183,9 @@ def joys(post):
 # Route mode auto
 @socketio.on('auto')
 def auto(post):
-
+    print(post['width'])
+    print(post['height'])
+    print(post['speed'])
     mainAuto(post['width'] ,post['height'], post['speed'])
     return send('200')
 
