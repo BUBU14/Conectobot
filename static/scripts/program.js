@@ -51,7 +51,7 @@ function runAuto()
 
     if (dataOk == 3)
     {
-        socket.emit('auto', {width : elemW , height : elemH , speed : elemS})
+        socket.emit('auto', {width : elemW.val() , height : elemH.val() , speed : elemS.val() })
     }
 }
 

@@ -105,28 +105,18 @@
             <div class="JoystickMain" id="JoystickMain">
                 <div class="Joystick" id="Joystick">
                     <script type="text/javascript">
+                        var socket = io.connect('http://' + document.domain + ':' + location.port);
+                        socket.on('connect', function() {
+                            console.log("lets go socket action");
+                            socket.emit('event', {data: 'Connected!'});
+                        });
                         setInterval(function(argument) {
                             if (JoystickReady) {
                                 document.getElementById("log").innerHTML = "X : " + GetJoystick_X() + "  -  Y : " + GetJoystick_Y();
-                                var jsonToSend = new Object();
-                                jsonToSend.x = GetJoystick_X();
-                                jsonToSend.y = GetJoystick_Y();
-                                var jsonString = JSON.stringify(jsonToSend, null, '\t');
-                                $.ajax({
-                                    url: '/joys/',
-                                    type: 'POST',
-                                    dataType: 'application/json;charset=UTF-8',
-                                    data: jsonString,
-                                    statusCode: {
-                                        200: function () {
 
-                                            console.log("Success !");
-                                        },
-                                        400: function () {
-                                            console.log("NO joys")
-                                        }
-                                    }
-                                });
+                                x = GetJoystick_X();
+                                y = GetJoystick_Y();
+                                socket.emit('joys', {'x':x, 'y':y})
                             }
                         },100);
                     </script>
