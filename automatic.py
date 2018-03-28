@@ -18,8 +18,6 @@ def start(speed):
         pinmode.straightAhead()
         pinmode.ena.start(speed)
         pinmode.enb.start(speed)
-        time.sleep(5)
-        moveInfo = changeDirection(moveInfo)
     pinmode.disableComponent()
     print("end programm")
 
