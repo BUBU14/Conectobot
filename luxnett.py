@@ -56,11 +56,11 @@ def water(post):
 
 @socketio.on('brushA')
 def brushA(post):
-    print(post['state'])
-    if post['state'] == 1:
+    print(post['data'])
+    if post['data'] == 1:
         print("enable brushA")
         GPIO.output(pinmode.brushAPIN, 1)
-    elif post['state'] == 0:
+    elif post['data'] == 0:
         print("disable brushA")
         GPIO.output(pinmode.brushAPIN, 0)
     else:
@@ -71,10 +71,10 @@ def brushA(post):
 @socketio.on('brushB')
 def brushB(post):
     print(str(post))
-    if post['state'] == 1:
+    if post['data'] == 1:
         print("enable brushB")
         GPIO.output(pinmode.brushBPIN, 1)
-    elif post['state'] == 0:
+    elif post['data'] == 0:
         print("disable brushB")
         GPIO.output(pinmode.brushBPIN, 0)
     else:
@@ -120,11 +120,11 @@ def back(post):
 @socketio.on('up')
 def up(post):
 
-    if post['up'] == 1:
+    if post['data'] == 1:
         print("go up")
         pinmode.straightAhead()
         return send('200')
-    elif post['up'] == 0:
+    elif post['data'] == 0:
         print("stop up")
         pinmode.stopRun()
         return send('200')
@@ -134,11 +134,11 @@ def up(post):
 @socketio.on('down')
 def down(post):
 
-    if post['down'] == 1:
+    if post['data'] == 1:
         print("go down")
         pinmode.retreat()
         return send('200')
-    elif post['down'] == 0:
+    elif post['data'] == 0:
         print("stop down")
         pinmode.stopRun()
         return send('200')
@@ -148,11 +148,11 @@ def down(post):
 @socketio.on('left')
 def left(post):
 
-    if post['left'] == 1:
+    if post['data'] == 1:
         print("go left")
         pinmode.goLeft()
         return send('200')
-    elif post['left'] == 0:
+    elif post['data'] == 0:
         print("stop left")
         pinmode.stopRun()
         return send('200')
@@ -162,11 +162,11 @@ def left(post):
 @socketio.on('right')
 def right(post):
 
-    if post['right'] == 1:
+    if post['data'] == 1:
         print("go right")
         pinmode.goRight()
         return send('200')
-    elif post['right'] == 0:
+    elif post['data'] == 0:
         print("stop right")
         pinmode.stopRun()
         return send('200')
