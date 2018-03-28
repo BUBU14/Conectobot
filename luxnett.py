@@ -198,7 +198,6 @@ def autoS(post):
     pinmode.ena.stop()
     pinmode.enb.stop()
     GPIO.cleanup()
-    pinmode.setup()
     stopAuto()
     return send('200')
 
