@@ -122,7 +122,7 @@ def enableComponent():
 
 def disableComponent():
     GPIO.output(lightPIN, 0)
-    GPIO.output(waterPIN, 0)
+    GPIO.output(waterPIN, 1)
     GPIO.output(brushAPIN, 0)
     GPIO.output(brushBPIN, 0)
 
