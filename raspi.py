@@ -2,6 +2,7 @@ import RPi.GPIO as GPIO
 
 finish = 0
 captGo = 0
+moveInfo = 'O'
 
 def setup():
     GPIO.setmode(GPIO.BCM)

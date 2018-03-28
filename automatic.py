@@ -10,9 +10,9 @@ def mainAuto(width,height,speed):
     calculDuration(width,height,speed)
     pinmode.finish = 0
     endProg = 0
-    moveInfo = "LR"
+    pinmode.moveInfo = "LR"
     while( endProg != 1):
-        endProg = start(float(speed),moveInfo, endProg)
+        endProg = start(float(speed),pinmode.moveInfo, endProg)
 
 
 def start(speed,moveInfo,endProg):
@@ -28,7 +28,7 @@ def start(speed,moveInfo,endProg):
         print("end programm")
         return 1
     if endProg ==2:
-        changeDirection(moveInfo)
+        pinmode.moveInfo = changeDirection(moveInfo)
         return 0
 
 
