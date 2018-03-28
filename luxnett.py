@@ -192,7 +192,6 @@ def auto(post):
 
 @socketio.on('autoS')
 def autoS(post):
-
     print( "j'ai recu la requete de stop")
     print(post)
     pinmode.ena.stop()
