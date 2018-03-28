@@ -57,4 +57,5 @@ def calculDuration(width, height,speed):
 def stopAuto():
     pinmode.finish = 1
     pinmode.disableComponent()
+    pinmode.stopRun()
 
