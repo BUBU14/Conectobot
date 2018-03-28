@@ -20,6 +20,7 @@ def setup():
     GPIO.setup(22, GPIO.IN, pull_up_down=GPIO.PUD_DOWN)
     ena = GPIO.PWM(12, 100)
     enb = GPIO.PWM(13, 100)
+    disableComponent()
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setwarnings(False)
