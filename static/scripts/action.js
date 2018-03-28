@@ -11,15 +11,21 @@ function statusBrushA() {
     if (elem.value =="Stop")
     {
         state = 1 ;
-        elem.value = "Start"
+        elem.value ="Start";
+        elem.classList.remove("is-warning");
+        elem.classList.add("is-success");
+        console.log("I'm starting water");
     }
     else
     {
         state = 0 ;
-        elem.value = "Stop"
+        elem.value ="Stop";
+        elem.classList.remove("is-success");
+        elem.classList.add("is-warning");
+        console.log("I'm ending water");
     }
-    jsonToSend.state = state;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
+
+    socket.emit('brushA',{data : state});
 }
 
 function statusBrushB() {
@@ -29,13 +35,22 @@ function statusBrushB() {
     if (elem.value =="Stop")
     {
         state = 1 ;
+        elem.value ="Start";
+        elem.classList.remove("is-warning");
+        elem.classList.add("is-success");
+        console.log("I'm starting water");
     }
     else
     {
         state = 0 ;
+        elem.value ="Stop";
+        elem.classList.remove("is-success");
+        elem.classList.add("is-warning");
+        console.log("I'm ending water");
     }
-    jsonToSend.state = state;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
+
+    socket.emit('brushB',{data : state});
+
 }
 
 function statusWater() {

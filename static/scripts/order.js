@@ -55,44 +55,13 @@ function mouseMoveUp() {
 function sendUp() {
     var elem = document.getElementById("up");
     elem.classList.add("is-success");
-    var jsonToSend = new Object();
-    jsonToSend.up = 1;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    $.ajax({
-        url: '/up/',
-        type: 'POST',
-        dataType: 'application/json;charset=UTF-8',
-        data: jsonString,
-        statusCode: {
-            200: function () {
-                console.log("i move up !");
-            },
-            400: function () {
-                console.log("Couldn't move up");
-            }
-        }
-    });
+    socket.emit('up', {data: 1});
 }
 
 function sendEndUp() {
 
-    var jsonToSend = new Object();
-    jsonToSend.up = 0;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    $.ajax({
-        url: '/up/',
-        type: 'POST',
-        dataType: 'application/json;charset=UTF-8',
-        data: jsonString,
-        statusCode: {
-            200: function () {
-                console.log("i stop up!");
-            },
-            400: function () {
-                console.log("Couldn't stop up");
-            }
-        }
-    });
+    socket.emit('up',{data : 0});
+
 }
 
 function moveDown()
@@ -114,45 +83,13 @@ function mouseMoveDown() {
 function sendDown() {
     var elem = document.getElementById("down");
     elem.classList.add("is-success");
-    var jsonToSend = new Object();
-    jsonToSend.down = 1;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    $.ajax({
-        url: '/down/',
-        type: 'POST',
-        dataType: 'application/json;charset=UTF-8',
-        data: jsonString,
-        statusCode: {
-            200: function () {
-                console.log("i move down !");
-            },
-            400: function () {
-                console.log("Couldn't move down");
-            }
-        }
-    });
+    socket.emit('down',{data : 1});
 }
 
 
 function sendEndDown() {
 
-    var jsonToSend = new Object();
-    jsonToSend.down = 0;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    $.ajax({
-        url: '/down/',
-        type: 'POST',
-        dataType: 'application/json;charset=UTF-8',
-        data: jsonString,
-        statusCode: {
-            200: function () {
-                console.log("i stop down!");
-            },
-            400: function () {
-                console.log("Couldn't stop down");
-            }
-        }
-    });
+   socket.emit('down',{data : 0});
 }
 
 
@@ -175,45 +112,12 @@ function mouseMoveLeft() {
 function sendLeft() {
     var elem = document.getElementById("left");
     elem.classList.add("is-success");
-    var jsonToSend = new Object();
-    jsonToSend.left = 1;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    $.ajax({
-        url: '/left/',
-        type: 'POST',
-        dataType: 'application/json;charset=UTF-8',
-        data: jsonString,
-        statusCode: {
-            200: function () {
-                console.log("i move left !");
-            },
-            400: function () {
-                console.log("Couldn't move left");
-            }
-        }
-    });
+   socket.emit('left',{data : 1});
 }
 
 
 function sendEndLeft() {
-
-    var jsonToSend = new Object();
-    jsonToSend.left = 0;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    $.ajax({
-        url: '/left/',
-        type: 'POST',
-        dataType: 'application/json;charset=UTF-8',
-        data: jsonString,
-        statusCode: {
-            200: function () {
-                console.log("i stop left!");
-            },
-            400: function () {
-                console.log("Couldn't stop left");
-            }
-        }
-    });
+socket.emit('left',{data : 0});
 }
 
 
@@ -236,43 +140,10 @@ function mouseMoveRight() {
 function sendRight() {
     var elem = document.getElementById("right");
     elem.classList.add("is-success");
-    var jsonToSend = new Object();
-    jsonToSend.right = 1;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    $.ajax({
-        url: '/right/',
-        type: 'POST',
-        dataType: 'application/json;charset=UTF-8',
-        data: jsonString,
-        statusCode: {
-            200: function () {
-                console.log("i move right !");
-            },
-            400: function () {
-                console.log("Couldn't move right");
-            }
-        }
-    });
+    socket.emit('right',{data : 1});
 }
 
 
 function sendEndRight() {
-
-    var jsonToSend = new Object();
-    jsonToSend.right = 0;
-    var jsonString = JSON.stringify(jsonToSend, null, '\t');
-    $.ajax({
-        url: '/right/',
-        type: 'POST',
-        dataType: 'application/json;charset=UTF-8',
-        data: jsonString,
-        statusCode: {
-            200: function () {
-                console.log("i stop right!");
-            },
-            400: function () {
-                console.log("Couldn't stop right");
-            }
-        }
-    });
+    socket.emit('right',{data : 0});
 }
