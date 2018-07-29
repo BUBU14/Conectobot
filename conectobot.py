@@ -18,6 +18,7 @@ pinmode.setup()
 # Route pour l'index.html
 @app.route('/')
 def hello_world():
+    print("Got you bitch")
     return render_template('index.html')
 
 def gen(camera):
